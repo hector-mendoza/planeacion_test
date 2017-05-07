@@ -1,0 +1,10 @@
+Docentes
+- Llenado informacion obligatorio
+
+Directores dan de alta materias y ver grupos de docentes
+- No pueden ver docentes de otras carreras
+- Llenado de informacion opcional
+
+Administrador
+
+Validar cant referencias (3 - 10)
