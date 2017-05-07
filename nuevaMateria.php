@@ -166,41 +166,42 @@
                     <section class="container">
                         <div class="container-page">
                             <form action="nuevaMateria_submit.php" method="POST" accept-charset="utf-8">
-                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
                                     
-                                    <div class="form-group col-lg-8">
+                                    <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
                                         <input type="text" name="plan" class="form-control" id="plan" required>
                                     </div>
                                     
-                                    <div class="form-group col-lg-8">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Nombre Unidad Aprendizaje: </label>
                                         <input type="text" name="" class="form-control" id="unidad" required>
                                     </div>
                                     
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Semestre / Cuatrimestre: </label>
                                         <input type="password" name="" class="form-control" name="" required>
                                     </div>
                                     
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Fecha: </label>
                                         <input type="date" name="fecha" class="form-control" id="fecha" value="" required>
                                     </div>
                                     <br>
-                                    <h3 class="dark-grey">II. PROPÓSITO:</h3>
                                     
-                                    <div class="form-group col-lg-8">
+                                    
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">II. PROPÓSITO:</h3>
                                         <textarea class="form-control" name="proposito" placeholder="Escribe el propósito..." rows="5" cols="25" required></textarea>
                                     </div>
                                     <br>
-                                    <h3 class="dark-grey">III. COMPETENCIAS GENÉRICAS Y ESPECÍFICAS DE LA UNIDAD APRENDIZAJE:</h3>
                                     
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">III. COMPETENCIAS GENÉRICAS Y ESPECÍFICAS DE LA UNIDAD APRENDIZAJE:</h3>
                                         <textarea class="form-control" name="proposito" placeholder="GENÉRICAS" rows="5" cols="25" required></textarea>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <textarea class="form-control" name="proposito" placeholder="ESPECÍFICAS" rows="5" cols="25" required></textarea>
                                     </div>
                                     
