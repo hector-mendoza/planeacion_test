@@ -263,47 +263,42 @@
                                     <!-- /**************************************************************************************************/
                                    /**********************************VII. UNIDADES DE COMPETENCIA************************************/
                                    /**************************************************************************************************/ -->
-                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                        <h3 class="dark-grey">VII.UNIDADES DE COMPETENCIA:</h3>
+                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
+                                   	<h3 class="dark-grey">VII.UNIDADES DE COMPETENCIA:</h3>
+                                   		<div style="overflow-y: scroll; height:200px; width: 100%">
+                                        
+	                                        <table id="unidades" border="1" class="table table-hover table-responsive">
+												<tr>
+													<th>Dia con fecha y Horario</th>
+													<th>Tema</th>
+													<th>Aprendizajes esperados</th>
+													<th>Estrategias de aprendizaje</th>
+													<th>Recursos didacticos</th>
+													<th>Evidencias de aprendizaje</th>
+													<th>Tipos de evaluacion</th>
+													<th>Instrumentos de evaluacion</th>
+													<th>Criterios de evaluacion y ponderacion</th>
+												</tr>
+												<tr>
+													<td><textarea id="1" name="cosa"></textarea></td>
+													<td><textarea id="2" name="cosa"></textarea></td>
+													<td><textarea id="3" name="cosa"></textarea></td>
+													<td><textarea id="4" name="cosa"></textarea></td>
+													<td><textarea id="5" name="cosa"></textarea></td>
+													<td><textarea id="6" name="cosa"></textarea></td>
+													<td><textarea id="7" name="cosa"></textarea></td>
+													<td><textarea id="8" name="cosa"></textarea></td>
+													<td><textarea id="9" name="cosa"></textarea></td>
+												</tr>
+											</table>
+										</div>
                                     </div>
-
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Dia de la semana:</label><input type="text" placeholder="dia de la semana" name="diasemana" class="form-control" id="diasemana" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Fecha:</label><input type="text" placeholder="dia-mes-año" name="fecha" class="form-control" id="fecha" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Horario:</label><input type="text" placeholder="hora inicio-hora final" name="horario" class="form-control" id="horario" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Aprendizajes Esperados:</label><input type="text" placeholder="breve descripción" name="aprendizajes" class="form-control" id="aprendizajes" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Estrategias de Aprendizaje:</label><input type="text" placeholder="breve descripción" name="estrategias" class="form-control" id="estrategias" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Recursos Didácticos y Objetivos de Aprendizaje:</label><input type="text" placeholder="primero Recursos y posterioremtne objetivos" name="RD_y_OA" class="form-control" id="RD_y_OA" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Evidencias de Aprendizaje:</label><input type="text" placeholder="separadas por comas (,)" name="evidencias_aprend" class="form-control" id="evidencias_aprend" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Tipos de Evaluación:</label><input type="text" placeholder="separadas por comas (,)" name="tipo_eval" class="form-control" id="tipo_eval" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Instrumentos de Evaluación:</label><input type="text" placeholder="separadas por comas (,)" name="inst_eval" class="form-control" id="inst_eval" value="" required>
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Criterios de Evaluación y Ponderación:</label><input type="text" placeholder="separadas por comas (,)" name="criterios" class="form-control" id="criterios" value="" required>
-                                    </div>
-
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
-                                    <!-- /**************************************************************************************************/
+									
+									<!-- /**************************************************************************************************/
                                     /**********************************VII. UNIDADES DE COMPETENCIA************************************/
                                     /**************************************************************************************************/ -->
 
-
+                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
                                         <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" required></textarea>
