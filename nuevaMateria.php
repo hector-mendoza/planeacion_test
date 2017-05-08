@@ -294,11 +294,6 @@
 										</div>
                                     </div>
 									
-									<!-- /**************************************************************************************************/
-                                    /**********************************VII. UNIDADES DE COMPETENCIA************************************/
-                                    /**************************************************************************************************/ -->
-
-                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
                                         <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" required></textarea>
@@ -312,7 +307,7 @@
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
                                         <input type="submit" class="btn btn-info" name="submit" value="GUARDAR">
                                     </div>
-                                </div>
+                      
                             </div>
                         </form>
                     </section>
