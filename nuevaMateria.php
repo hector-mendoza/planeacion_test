@@ -205,7 +205,73 @@
                                         <textarea class="form-control" name="proposito" placeholder="ESPECÍFICAS" rows="5" cols="25" required></textarea>
                                     </div>
                                     
-                                    <div class="col-lg-6">
+
+                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">IV. FECHAS DE EVALUACIONES SUMATIVAS:</h3>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <label>1ER Reporte:</label><input type="date" name="1reporte" class="form-control" id="1reporte" value="" required>
+                                    <label>2ER Reporte:</label><input type="date" name="2reporte" class="form-control" id="2reporte" value="" required>
+                                    <label>3ER Reporte(FINAL):</label><input type="date" name="3reporte" class="form-control" id="3reporte" value="" required>
+                                    </div>
+
+
+                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">V. HORAS Y CALENDARIO DE SESIONES:</h3>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <label>Horas Totales de UNIDAD DE APRENDIZAJE:</label><input type="number" placeholder="Horas Totales de UNIDAD DE APRENDIZAJE" name="totalhoras" class="form-control" id="totalhoras" value="" required>
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <label>Horas Totales CON DOCENTE:</label>
+                                    <input type="number" placeholder="Horas Totales Teóricas" name="docenteteoricas" class="form-control" id="totalhoras" value="" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="number" placeholder="Horas Totales Prácticas" name="docentepracticas" class="form-control" id="totalhoras" value="" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <label>Horas Totales INDEPENDIENTES:</label>
+                                    <input type="number" placeholder="Horas Totales INDEPENDIENTES Teóricas" name="independientesteoricas" class="form-control" id="independientesteoricas" value="" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="number" placeholder="Horas Totales INDEPENDIENTES Prácticas" name="independientespracticas" class="form-control" id="independientespracticas" value="" required>
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">VI. IDENTIFICACIÓN DEL GRUPO:</h3>
+                                    </div>
+
+
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <label>Grupo:</label>
+                                    <input type="number" placeholder="No. de Alumnos" name="totalalumnos" class="form-control" id="totalalumnos" value="" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Salón" name="salon" class="form-control" id="salon" value="" required>
+                                    </div>
+
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
+                                        <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" required></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
+                                        <textarea class="form-control" name="Complementarias" placeholder="Referencias Complementarias" rows="5" cols="25" required></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
                                         <input type="submit" class="btn btn-info" name="submit" value="GUARDAR">
                                     </div>
                                 </div>
