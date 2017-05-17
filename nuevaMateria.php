@@ -5,310 +5,173 @@
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.php">Planeación UVAQ</a>
-                </div>
-                <!-- Top Menu Items -->
-                <ul class="nav navbar-right top-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                        <ul class="dropdown-menu message-dropdown">
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading"><strong>Usuario</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-footer">
-                                <a href="#">Leer mensajes</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                        <ul class="dropdown-menu alert-dropdown">
-                            <li>
-                                <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">Ver todas</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Usuario <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Buzón</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Opciones</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Salir</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li class="active">
-                            <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Principal</a>
-                        </li>
-                        <!-- <li>
-                            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Estadísticas</a>
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                        </li>
-                        <li>
-                            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                        </li> -->
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Materias<i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Materia 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Materia 2</a>
-                                </li>
-                                <li>
-                                    <a href="nuevaMateria.php"> <i class="glyphicon glyphicon-plus"></i> Agregar materia</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!--<li>
-                            <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                        </li>-->
-                        <li>
-                            <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Cambio interfaz</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                <?php include("navbarHeader.php"); include("sidebar.php"); ?>
             </nav>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <section class="container">
                         <div class="container-page">
-                            <form action="nuevaMateria_submit.php" method="POST" accept-charset="utf-8">
-                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                            <form action="#" method="POST" accept-charset="utf-8">
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="firstStep">
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
                                     
                                     <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
-                                        <input type="text" name="plan" class="form-control" id="plan" required>
+                                        <input type="text" name="plan" class="form-control" id="plan" >
                                     </div>
                                     
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Nombre Unidad Aprendizaje: </label>
-                                        <input type="text" name="" class="form-control" id="unidad" required>
+                                        <input type="text" name="" class="form-control" id="unidad" >
                                     </div>
                                     
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Semestre / Cuatrimestre: </label>
-                                        <input type="password" name="" class="form-control" name="" required>
+                                        <input type="text" name="" class="form-control" name="" >
                                     </div>
                                     
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Fecha: </label>
-                                        <input type="date" name="fecha" class="form-control" id="fecha" value="" required>
+                                        <input type="date" name="fecha" class="" id="fecha" value="" >
                                     </div>
-                                    <br>
-                                    
-                                    
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#firstStep').hide(); $('#secondStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="secondStep" style="display:none;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">II. PROPÓSITO:</h3>
-                                        <textarea class="form-control" name="proposito" placeholder="Escribe el propósito..." rows="5" cols="25" required></textarea>
+                                        <textarea class="form-control" name="proposito" placeholder="Escribe el propósito..." rows="5" cols="25" ></textarea>
                                     </div>
-                                    <br>
-                                    
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#secondStep').hide(); $('#thirdStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="thirdStep" style="display:none;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">III. COMPETENCIAS GENÉRICAS Y ESPECÍFICAS DE LA UNIDAD APRENDIZAJE:</h3>
-                                        <textarea class="form-control" name="proposito" placeholder="GENÉRICAS" rows="5" cols="25" required></textarea>
+                                        <textarea class="form-control" name="proposito" placeholder="GENÉRICAS" rows="5" cols="25" ></textarea>
                                     </div>
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                        <textarea class="form-control" name="proposito" placeholder="ESPECÍFICAS" rows="5" cols="25" required></textarea>
+                                        <textarea class="form-control" name="proposito" placeholder="ESPECÍFICAS" rows="5" cols="25" ></textarea>
                                     </div>
-                                    
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#thirdStep').hide(); $('#fourthStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
 
-                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:none;"">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IV. FECHAS DE EVALUACIONES SUMATIVAS:</h3>
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>1ER Reporte:</label><input type="date" name="1reporte" class="form-control" id="1reporte" value="" required>
-                                    <label>2ER Reporte:</label><input type="date" name="2reporte" class="form-control" id="2reporte" value="" required>
-                                    <label>3ER Reporte(FINAL):</label><input type="date" name="3reporte" class="form-control" id="3reporte" value="" required>
+                                        <label>1ER Reporte:</label><input type="date" name="1reporte" class="form-control" id="1reporte" value="" >
+                                        <label>2ER Reporte:</label><input type="date" name="2reporte" class="form-control" id="2reporte" value="" >
+                                        <label>3ER Reporte(FINAL):</label><input type="date" name="3reporte" class="form-control" id="3reporte" value="" >
                                     </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#fourthStep').hide(); $('#fifthStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
 
-
-                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="fifthStep" style="display:none;">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">V. HORAS Y CALENDARIO DE SESIONES:</h3>
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Horas Totales de UNIDAD DE APRENDIZAJE:</label><input type="number" placeholder="Horas Totales de UNIDAD DE APRENDIZAJE" name="totalhoras" class="form-control" id="totalhoras" value="" required>
+                                        <label>Horas Totales de UNIDAD DE APRENDIZAJE:</label><input type="number" placeholder="Horas Totales de UNIDAD DE APRENDIZAJE" name="totalhoras" class="form-control" id="totalhoras" value="" >
                                     </div>
                                     
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Horas Totales CON DOCENTE:</label>
-                                    <input type="number" placeholder="Horas Totales Teóricas" name="docenteteoricas" class="form-control" id="totalhoras" value="" required>
+                                        <label>Horas Totales CON DOCENTE:</label>
+                                        <input type="number" placeholder="Horas Totales Teóricas" name="docenteteoricas" class="form-control" id="totalhoras" value="" >
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="number" placeholder="Horas Totales Prácticas" name="docentepracticas" class="form-control" id="totalhoras" value="" required>
+                                        <input type="number" placeholder="Horas Totales Prácticas" name="docentepracticas" class="form-control" id="totalhoras" value="" >
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Horas Totales INDEPENDIENTES:</label>
-                                    <input type="number" placeholder="Horas Totales INDEPENDIENTES Teóricas" name="independientesteoricas" class="form-control" id="independientesteoricas" value="" required>
+                                        <label>Horas Totales INDEPENDIENTES:</label>
+                                        <input type="number" placeholder="Horas Totales INDEPENDIENTES Teóricas" name="independientesteoricas" class="form-control" id="independientesteoricas" value="" >
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="number" placeholder="Horas Totales INDEPENDIENTES Prácticas" name="independientespracticas" class="form-control" id="independientespracticas" value="" required>
+                                        <input type="number" placeholder="Horas Totales INDEPENDIENTES Prácticas" name="independientespracticas" class="form-control" id="independientespracticas" value="" >
                                     </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#fifthStep').hide(); $('#sixthStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
 
-
-
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="sixthStep" style="display:none;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VI. IDENTIFICACIÓN DEL GRUPO:</h3>
                                     </div>
-
-
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <label>Grupo:</label>
-                                    <input type="number" placeholder="No. de Alumnos" name="totalalumnos" class="form-control" id="totalalumnos" value="" required>
+                                        <label>Grupo:</label>
+                                        <input type="number" placeholder="No. de Alumnos" name="totalalumnos" class="form-control" id="totalalumnos" value="" >
                                     </div>
-
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="text" placeholder="Salón" name="salon" class="form-control" id="salon" value="" required>
+                                        <input type="text" placeholder="Salón" name="salon" class="form-control" id="salon" value="" >
                                     </div>
-                                    
-                                    <!-- /**************************************************************************************************/
-                                   /**********************************VII. UNIDADES DE COMPETENCIA************************************/
-                                   /**************************************************************************************************/ -->
-                                   <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
-                                   	<h3 class="dark-grey">VII.UNIDADES DE COMPETENCIA:</h3>
-                                   		<div style="overflow-y: scroll; height:200px; width: 100%">
-                                        
-	                                        <table id="unidades" border="1" class="table table-hover table-responsive">
-												<tr>
-													<th>Dia con fecha y Horario</th>
-													<th>Tema</th>
-													<th>Aprendizajes esperados</th>
-													<th>Estrategias de aprendizaje</th>
-													<th>Recursos didacticos</th>
-													<th>Evidencias de aprendizaje</th>
-													<th>Tipos de evaluacion</th>
-													<th>Instrumentos de evaluacion</th>
-													<th>Criterios de evaluacion y ponderacion</th>
-												</tr>
-												<tr>
-													<td><textarea id="1" name="cosa"></textarea></td>
-													<td><textarea id="2" name="cosa"></textarea></td>
-													<td><textarea id="3" name="cosa"></textarea></td>
-													<td><textarea id="4" name="cosa"></textarea></td>
-													<td><textarea id="5" name="cosa"></textarea></td>
-													<td><textarea id="6" name="cosa"></textarea></td>
-													<td><textarea id="7" name="cosa"></textarea></td>
-													<td><textarea id="8" name="cosa"></textarea></td>
-													<td><textarea id="9" name="cosa"></textarea></td>
-												</tr>
-											</table>
-										</div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#sixthStep').hide(); $('#sevenStep').show()">SEGUIR</button>
                                     </div>
-									
+                                </div>
+
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="sevenStep" style="display:none;">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
+                                        <h3 class="dark-grey">VII.UNIDADES DE COMPETENCIA:</h3>
+                                        <div style="overflow-y: scroll; height:200px; width: 100%">
+                                            <table id="unidades" border="1" class="table table-hover table-responsive">
+                                                <tr>
+                                                    <th>Dia con fecha y Horario</th>
+                                                    <th>Tema</th>
+                                                    <th>Aprendizajes esperados</th>
+                                                    <th>Estrategias de aprendizaje</th>
+                                                    <th>Recursos didacticos</th>
+                                                    <th>Evidencias de aprendizaje</th>
+                                                    <th>Tipos de evaluacion</th>
+                                                    <th>Instrumentos de evaluacion</th>
+                                                    <th>Criterios de evaluacion y ponderacion</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><textarea id="1" name="cosa"></textarea></td>
+                                                    <td><textarea id="2" name="cosa"></textarea></td>
+                                                    <td><textarea id="3" name="cosa"></textarea></td>
+                                                    <td><textarea id="4" name="cosa"></textarea></td>
+                                                    <td><textarea id="5" name="cosa"></textarea></td>
+                                                    <td><textarea id="6" name="cosa"></textarea></td>
+                                                    <td><textarea id="7" name="cosa"></textarea></td>
+                                                    <td><textarea id="8" name="cosa"></textarea></td>
+                                                    <td><textarea id="9" name="cosa"></textarea></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#eightStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:none;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
-                                        <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" required></textarea>
+                                        <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" ></textarea>
                                     </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#eightStep').hide(); $('#nineStep').show()">SEGUIR</button>
+                                    </div>
+                                </div>
 
+                                <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:none;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
-                                        <textarea class="form-control" name="Complementarias" placeholder="Referencias Complementarias" rows="5" cols="25" required></textarea>
+                                        <textarea class="form-control" name="Complementarias" placeholder="Referencias Complementarias" rows="5" cols="25" ></textarea>
                                     </div>
-
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
-                                        <input type="submit" class="btn btn-info" name="submit" value="GUARDAR">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <input type="submit" name="submit" class="btn btn-danger btn-lg" value="TERMINAR">
                                     </div>
-                      
-                            </div>
+                                </div>
                         </form>
                     </section>
                 </div>
@@ -316,8 +179,6 @@
             </div>
             <!-- /#page-wrapper -->
         </div>
-        <!-- /#wrapper -->
-        <!-- jQuery -->
         <?php include('script.php'); ?>
     </body>
 </html>
