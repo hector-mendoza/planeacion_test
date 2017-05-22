@@ -2,15 +2,19 @@
 ob_start();
 ?>
 <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
+        <br><br><br><br><br>  
+        <h1 style="text-align: center;">UVAQ</h1>
+        <br><br><br><br><br>
+        <h1 style="text-align: center;">Planeación Didáctica</h1>
+        <br><br>
+        <h3 style="text-align: center;">Semestre Agosto 2016 - Enero 2017</h3>
+    
+
+</page>
+<page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
   <table align="center" border="0">
     <tr>
-      <td align="center"><h1><b>UVAQ</b></h1></td>
-    </tr>
-    <tr>
-      <td align="center"><h1>Planeación Didáctica</h1></td>
-    </tr>
-    <tr>
-      <td align="center"><h3>Semestre Agosto 2017 - Enero 2018</h3></td>
+      <td align="center"></td>
     </tr>
   </table><br>
   <table align ="center" width="500">
@@ -54,168 +58,201 @@ ob_start();
       </td>
     </tr>
   </table>
+  </page>
+
   <!-- Aqui empieza la unidad I. DATOS GENERALES-->
-  <table align ="center">
-    <tr>
-      <td align="center">
-        <h4>I  DATOS GENERALES:</h4>
-      </td>
-    </tr>
-  </table>
-  <table align ="center" border="1">
-    <tr>
-      <td align="center"><b>Nombre del Plan Estudios</b></td>
-      <td width="250"></td>
-    </tr>
-    <tr>
-      <td align="center" width="200"><b>Nombre de la Unidad de Aprendizaje</b></td>
-      <td width="250"></td>
-    </tr>
-    <tr>
-      <td align="center" width="200"><b>Generales del Docente:</b></td>
-      <td width="250">
-        <table border="1">
-          <tr>
-            <td>Nombre:</td><td width="150"></td>
-          </tr>
-          <tr>
-            <td>Email:</td><td></td>
-          </tr>
-          <tr>
-            <td>Teléfono Contacto:</td><td></td>
-          </tr>
-          <tr>
-            <td>Grado Académico:</td><td></td>
-          </tr>
-          <tr>
-            <td>Formación:</td><td></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="250"><b>Semestre/Cuatrimestre:</b></td>
-      <td width="250"></td>
-    </tr>
-    <tr>
-      <td align="center" width="250"><b>Fecha:</b></td>
-      <td width="250"></td>
-    </tr>
-  </table>
-  <br><br><br><br><br><br><br><br>
-  <table align ="center">
-    <tr>
-      <td align="center"><h4>II.PROPÓSITO:</h4></td></tr>
+  <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
+    <table align ="center">
+      <tr>
+        <td align="center">
+          <h4>I  DATOS GENERALES:</h4>
+        </td>
+      </tr>
     </table>
     <table align ="center" border="1">
       <tr>
-        <td align="center" width="600"><br><br><br><br></td></tr>
+        <td align="center"><b>Nombre del Plan Estudios</b></td>
+        <td width="250"></td>
+      </tr>
+      <tr>
+        <td align="center" width="200"><b>Nombre de la Unidad de Aprendizaje</b></td>
+        <td width="250"></td>
+      </tr>
+      <tr>
+        <td align="center" width="200"><b>Generales del Docente:</b></td>
+        <td width="250">
+          <table border="1">
+            <tr>
+              <td>Nombre:</td><td width="150"></td>
+            </tr>
+            <tr>
+              <td>Email:</td><td></td>
+            </tr>
+            <tr>
+              <td>Teléfono Contacto:</td><td></td>
+            </tr>
+            <tr>
+              <td>Grado Académico:</td><td></td>
+            </tr>
+            <tr>
+              <td>Formación:</td><td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" width="250"><b>Semestre/Cuatrimestre:</b></td>
+        <td width="250"></td>
+      </tr>
+      <tr>
+        <td align="center" width="250"><b>Fecha:</b></td>
+        <td width="250"></td>
+      </tr>
+    </table>
+    <br><br><br><br><br><br><br><br>
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>II.PROPÓSITO:</h4></td>
+      </tr>
+    </table>
+    <table align ="center" border="1">
+      <tr>
+          <td align="center" width="600"><br><br><br><br></td>
+        </tr>
       </table>
       <br><br>
       <table align ="center">
         <tr>
-          <td align="center"><h4>III.COMPETENCIAS GENÉRICAS Y ESPECÍFICAS:</h4></td></tr>
-        </table>
-        <table align ="center" border="1">
-          <tr>
-            <td align="center" width="600"><br><br><br><br></td></tr>
-          </table>
-          <br><br>
-          <table align ="center">
-            <tr>
-              <td align="center"><h4>IV.FECHAS DE EVALUACIÓNES SUMATIVAS:</h4></td></tr>
-            </table>
-            <table align ="center" border="1">
+          <td align="center"><h4>III.COMPETENCIAS GENÉRICAS Y ESPECÍFICAS:</h4></td>
+        </tr>
+      </table>
+      <table align ="center" border="1">
+        <tr>
+          <td align="center" width="600"><br><br><br><br></td>
+        </tr>
+      </table>
+  </page>
+  <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>IV.FECHAS DE EVALUACIÓNES SUMATIVAS:</h4></td>
+      </tr>
+      </table>
+      <table align ="center" border="1">
+        <tr>
+          <td align="center" width="250">1er Reporte</td><td width="300"></td>
+        </tr>
+        <tr>
+          <td align="center" width="250">2do Reporte</td><td width="300"></td>
+        </tr>
+        <tr>
+          <td align="center" width="250">3er Reporte</td><td width="300"></td>
+        </tr>
+      </table>
+
+      <table align ="center">
+        <tr>
+          <td align="center"><h4>V.HORAS Y CALENDARIO DE SESIONES:</h4></td></tr>
+
+      </table>
+      <table align="center" border="1">
+        <tr>
+          <td width="200">Horas Totales de Unidad de Aprendizaje</td><td width="200"></td><td width="200"></td>
+        </tr>
+        <tr>
+          <td width="200">Horas Totales Con Docente</td><td colspan="2">
+
+            <table border="1">
               <tr>
-                <td align="center" width="250">1er Reporte</td><td width="300"></td></tr>
-                <tr>
-                  <td align="center" width="250">2do Reporte</td><td width="300"></td></tr>
-                  <tr>
-                    <td align="center" width="250">3er Reporte</td><td width="300"></td></tr>
-                  </table>
-                  <br><br>
-                  <table align ="center">
-                    <tr>
-                      <td align="center"><h4>V.HORAS Y CALENDARIO DE SESIONES:</h4></td></tr>
-                    </table>
-                    <table align="center" border="1">
-                      <tr>
-                        <td width="200">Horas Totales de Unidad de Aprendizaje</td><td width="200"></td><td width="200"></td>
-                      </tr>
-                      <tr>
-                        <td width="200">Horas Totales Con Docente</td><td colspan="2" width="400">
-                        <table border="1">
-                          <tr>
-                            <td width="200">Teóricas</td><td width="200">Prácticas</td>
-                          </tr>
-                          <td><br></td><td><br></td>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <br><br>
-                  <table align ="center">
-                    <tr>
-                      <td align="center"><h4>VI.IDENTIFICACIÓN DEL GRUPO:</h4></td></tr>
-                    </table>
-                    <table align="center" border="1">
-                      <tr>
-                        <td width="200">Gupo</td><td width="200">No. Alumnos</td><td width="200">Salón</td>
-                      </tr>
-                      <tr>
-                        <td><br></td><td><br></td><td><br></td>
-                      </tr>
-                    </table>
-                    <br><br>
-                    <table align ="center">
-                      <tr>
-                        <td align="center"><h4>VII.UNIDAD DE COMPETENCIA:</h4></td></tr>
-                      </table>
-                      <table align="center" border="1">
-                        <tr>
-                          <td width="220">DÍA DE LA SEMANA CON FECHA Y HORARIOS</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">APRENDIZAJES ESPERADOS</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">ESTRATEGIAS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">RECURSOS DIDÁCTICOS Y OBJETIVOS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">EVIDENCIAS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">TIPOS DE EVALUACIÓN</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">INSTRUMETOS DE EVALUACIÓN</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                        <tr>
-                          <td width="220">CRITERIOS DE EVALUACIÓN Y PONDERACIÓN</td><td width="190"></td><td width="190"></td>
-                        </tr>
-                      </table>
-                      <br><br>
-                      <table align ="center">
-                        <tr>
-                          <td align="center"><h4>VIII.REFERENCIAS BÁSICAS:</h4></td></tr>
-                        </table>
-                        <table align ="center" border="1">
-                          <tr>
-                            <td align="center" width="600"><br><br><br><br></td></tr>
-                          </table>
-                          <br><br>
-                          <table align ="center">
-                            <tr>
-                              <td align="center"><h4>VIII.REFERENCIAS COMPLEMENTARIAS:</h4></td></tr>
-                            </table>
-                            <table align ="center" border="1">
-                              <tr>
-                                <td align="center" width="600"><br><br><br><br></td></tr>
-                              </table>
-                            </page>
+                <td width="200">Teóricas</td><td width="200">Prácticas</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    <br><br>
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>VI.IDENTIFICACIÓN DEL GRUPO:</h4></td>
+      </tr>
+    </table>
+    <table align="center" border="1">
+      <tr>
+        <td width="200">Gupo</td><td width="200">No. Alumnos</td><td width="200">Salón</td>
+      </tr>
+      <tr>
+        <td><br></td><td><br></td><td><br></td>
+      </tr>
+    </table>
+  </page>
+
+  <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>VII.UNIDAD DE COMPETENCIA:</h4></td>
+      </tr>
+    </table>
+    <table align="center" border="1">
+      <tr>
+        <td width="220">FECHA</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">APRENDIZAJES ESPERADOS</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">ESTRATEGIAS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">RECURSOS DIDÁCTICOS Y OBJETIVOS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">EVIDENCIAS DE APRENDIZAJE</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">TIPOS DE EVALUACIÓN</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">INSTRUMETOS DE EVALUACIÓN</td><td width="190"></td><td width="190"></td>
+      </tr>
+      <tr>
+        <td width="220">CRITERIOS DE EVALUACIÓN Y PONDERACIÓN</td><td width="190"></td><td width="190"></td>
+      </tr>
+    </table>
+  </page>
+
+  <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>VII.UNIDAD DE COMPETENCIA:</h4></td>
+      </tr>
+    </table>
+    <table align="center" border="1">
+      <tr>
+        <td width="220">DÍA DE LA SEMANA</td><td width="380"></td>
+      </tr>
+      <tr>
+        <td width="220">APRENDIZAJES ESPERADOS</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">ESTRATEGIAS DE APRENDIZAJE</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">RECURSOS DIDÁCTICOS Y OBJETIVOS DE APRENDIZAJE</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">EVIDENCIAS DE APRENDIZAJE</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">TIPOS DE EVALUACIÓN</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">INSTRUMETOS DE EVALUACIÓN</td><td></td>
+      </tr>
+      <tr>
+        <td width="220">CRITERIOS DE EVALUACIÓN Y PONDERACIÓN</td><td></td>
+      </tr>
+    </table>
+  </page>
 <?php
 $content = ob_get_clean();
 require_once(dirname(__FILE__).'/vendor/autoload.php');
