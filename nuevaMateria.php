@@ -11,7 +11,7 @@
                 <div class="container-fluid">
                     <section class="container">
                         <div class="container-page">
-                            <form action="#" method="POST" accept-charset="utf-8">
+                            <form action="save_pdf.php" method="POST" accept-charset="utf-8">
                                 <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="firstStep">
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
                                     

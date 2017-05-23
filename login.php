@@ -20,16 +20,16 @@
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
-                        <form id="loginform" class="form-horizontal" role="form">
+                        <form id="loginform" class="form-horizontal" role="form" method="POST" action="val_login.php">
                                     
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="Usuario">                                        
+                                        <input id="user" type="text" class="form-control" name="user" value="" placeholder="Usuario">                                        
                                     </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
+                                        <input id="pass" type="password" class="form-control" name="pass" placeholder="Contraseña">
                                     </div>
                                     
 
@@ -47,7 +47,7 @@
                                     <!-- Button -->
 
                                     <div class="col-sm-12 controls">
-                                      <a id="btn-login" href="index.php" class="btn btn-success">Iniciar  </a>
+                                      <input type="submit" name="submit" value="INICIAR" class="btn btn-success">
                                      <!--  <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
 
                                     </div>

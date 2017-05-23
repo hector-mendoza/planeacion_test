@@ -22,13 +22,10 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Materias<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>
-                    <a href="#">Materia 1</a>
-                </li>
-                <li>
-                    <a href="#">Materia 2</a>
-                </li>
-                <li>
                     <a href="nuevaMateria.php"> <i class="glyphicon glyphicon-plus"></i> Agregar materia</a>
+                </li>
+                <li>
+                    <a href="materias.php"> <i class="glyphicon glyphicon-eye-open"></i> Ver materias</a>
                 </li>
             </ul>
         </li>
@@ -37,6 +34,9 @@
         </li>-->
         <li>
             <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Cambio interfaz</a>
+        </li>
+        <li>
+            <a href="creditos.html"><i class="glyphicon glyphicon-thumbs-up"></i> Créditos</a>
         </li>
     </ul>
 </div>

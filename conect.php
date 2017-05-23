@@ -1,7 +1,4 @@
 <?php
-$mysqli = new mysqli("localhost","root","","");
-	if(mysqli_connect_errno()){
-		echo 'Conexion Fallida : ', mysqli_connect_error();
-		exit();
-	}
+$link = mysqli_connect("localhost", "root", "", "nombreDB");
+$db = mysqli_select_db($link, "nombreDB") or die("<h2>BD no encontrada</h2>");
 ?>
