@@ -194,7 +194,7 @@ ob_start();
     </table>
     <table align="center" border="1">
       <tr>
-        <td width="220">DÍA DE LA SEMANA</td><td width="380"></td>
+        <td width="220">FECHA</td><td width="380"></td>
       </tr>
       <tr>
         <td width="220">APRENDIZAJES ESPERADOS</td><td></td>
@@ -220,36 +220,32 @@ ob_start();
     </table>
   </page>
   <!-- Aqui empieza la unidad VIII.REFERENCIAS BÁSICAS-->
-<table align ="center">
-  <tr>
-    <td align="center"><h4>VIII.REFERENCIAS BÁSICAS:</h4></td></tr>
-
-</table>
-<table align ="center" border="1">
-  <tr>
-    <td align="center" width="600"><br><br><br><br></td></tr>
-
-</table>
-<br><br>
-
-<!-- Aqui termina la unidad VIII.REFERENCIAS BÁSICAS-->
-
-
-<!-- Aqui empieza la unidad IX.REFERENCIAS COMPLEMENTARIAS-->
-<table align ="center">
-  <tr>
-    <td align="center"><h4>IX.REFERENCIAS COMPLEMENTARIAS:</h4></td></tr>
-
-</table>
-<table align ="center" border="1">
-  <tr>
-    <td align="center" width="600"><br><br><br><br></td></tr>
-
-</table>
-<!-- Aqui termina la unidad IX.REFERENCIAS COMPLEMENTARIAS-->
 
   <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
-
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>VIII.REFERENCIAS BÁSICAS:</h4></td>
+      </tr>
+    </table>
+    <table align ="center" border="1">
+      <tr>
+        <td align="center" width="600"><br><br><br><br></td>
+      </tr>
+    </table>
+    <br><br>
+    <!-- Aqui termina la unidad VIII.REFERENCIAS BÁSICAS-->
+    <!-- Aqui empieza la unidad IX.REFERENCIAS COMPLEMENTARIAS-->
+    <table align ="center">
+      <tr>
+        <td align="center"><h4>IX.REFERENCIAS COMPLEMENTARIAS:</h4></td>
+      </tr>
+    </table>
+    <table align ="center" border="1">
+      <tr>
+        <td align="center" width="600"><br><br><br><br></td>
+      </tr>
+    </table>
+<!-- Aqui termina la unidad IX.REFERENCIAS COMPLEMENTARIAS-->
   </page>
 <?php
 $content = ob_get_clean();
