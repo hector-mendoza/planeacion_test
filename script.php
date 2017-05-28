@@ -30,6 +30,14 @@
 	  // eliminar el texto seleccionado
 	  window.getSelection().removeAllRanges();
 	  // cuando los navegadores lo soporten, habría
-	  // que utilizar: removeRange(range)
+	  // que utilizar: removeRange(range)	
 	});
+
+/*	$("input[name='category']").on("change", function(){
+	    if($(this).val() != "" && $("textarea").val() != "" && $("input[name='category']").is(":checked") == true){
+	        $("input[type='submit']").removeAttr("disabled");
+	    } else {
+	        $("input[type='submit']").attr("disabled", "disabled");
+	    }
+	});*/
 </script>
