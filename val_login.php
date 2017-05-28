@@ -4,8 +4,8 @@ require_once("conect.php");
 extract($_POST);
 $req = (strlen($user)*strlen($pass) or die("Completa los campos"));
 
-$sql = "SELECT id_usuario FROM usuarios WHERE email = '$user' AND 
-	password = '$pass' ";
+$sql = "SELECT id_usuario FROM usuarios WHERE usuario = '$user' AND 
+	pass = '$pass' ";
 $review = mysqli_query($link, $sql);
 
 if (mysqli_num_rows($review) > 0) {
