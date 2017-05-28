@@ -36,7 +36,7 @@
             <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Cambio interfaz</a>
         </li>
         <li>
-            <a href="creditos.html"><i class="glyphicon glyphicon-thumbs-up"></i> Créditos</a>
+            <a href="creditos.php"><i class="glyphicon glyphicon-thumbs-up"></i> Créditos</a>
         </li>
     </ul>
 </div>
