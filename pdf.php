@@ -1,5 +1,19 @@
 <?php
+session_start();
 ob_start();
+require_once('conect.php');
+extract($_GET);
+$sql = mysqli_query($link, "SELECT * FROM materias WHERE id_materia = '$id' ");
+$data_mat = mysqli_fetch_object($sql);
+
+$sql_user = mysqli_query($link, "SELECT * FROM usuarios WHERE  id_usuario = '$_SESSION[id_usuario]' ");
+$data_user = mysqli_fetch_object($sql_user);
+
+$sql_tel = mysqli_query($link, "SELECT telefono FROM telefonos WHERE id_usuario = '$_SESSION[id_usuario]' ");
+$data_tel = mysqli_fetch_object($sql_tel);
+
+$sql_unid = mysqli_query($link, "SELECT * FROM unidadescompetencia WHERE id_materia = '$id' ");
+$data_unid = mysqli_fetch_object($sql_unid);
 ?>
 <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
         <br><br><br><br><br>
@@ -8,8 +22,6 @@ ob_start();
         <h1 style="text-align: center;">Planeación Didáctica</h1>
         <br><br>
         <h3 style="text-align: center;">Semestre Agosto 2016 - Enero 2017</h3>
-
-
 </page>
 <page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
   <table align="center" border="0">
@@ -72,41 +84,41 @@ ob_start();
     <table align ="center" border="1">
       <tr>
         <td align="center"><b>Nombre del Plan Estudios</b></td>
-        <td width="250"></td>
+        <td width="250"><?php echo $data_mat->nombrePlan; ?></td>
       </tr>
       <tr>
         <td align="center" width="200"><b>Nombre de la Unidad de Aprendizaje</b></td>
-        <td width="250"></td>
+        <td width="250"><?php echo $data_mat->nombreUnidad; ?></td>
       </tr>
       <tr>
         <td align="center" width="200"><b>Generales del Docente:</b></td>
         <td width="250">
           <table border="1">
             <tr>
-              <td>Nombre:</td><td width="150"></td>
+              <td>Nombre:</td><td width="150"><?php echo $data_user->nombre . " " . $data_user->apellido; ?></td>
             </tr>
             <tr>
-              <td>Email:</td><td></td>
+              <td>Email:</td><td><?php echo $data_user->correo; ?></td>
             </tr>
             <tr>
-              <td>Teléfono Contacto:</td><td></td>
+              <td>Teléfono Contacto:</td><td><?php echo $data_tel->telefono; ?></td>
             </tr>
             <tr>
-              <td>Grado Académico:</td><td></td>
+              <td>Grado Académico:</td><td><?php echo $data_user->grado_academ; ?></td>
             </tr>
             <tr>
-              <td>Formación:</td><td></td>
+              <td>Formación:</td><td><?php echo $data_user->formacion; ?></td>
             </tr>
           </table>
         </td>
       </tr>
       <tr>
         <td align="center" width="250"><b>Semestre/Cuatrimestre:</b></td>
-        <td width="250"></td>
+        <td><?php echo $data_mat->semestre . "°"; ?></td>
       </tr>
       <tr>
         <td align="center" width="250"><b>Fecha:</b></td>
-        <td width="250"></td>
+        <td width="250"><?php echo $data_mat->fecha; ?></td>
       </tr>
     </table>
     <br><br><br><br><br><br><br><br>
@@ -117,7 +129,7 @@ ob_start();
     </table>
     <table align ="center" border="1">
       <tr>
-          <td align="center" width="600"><br><br><br><br></td>
+          <td align="center" width="600"><?php echo $data_mat->proposito; ?></td>
         </tr>
       </table>
       <br><br>
@@ -128,7 +140,7 @@ ob_start();
       </table>
       <table align ="center" border="1">
         <tr>
-          <td align="center" width="600"><br><br><br><br></td>
+          <td align="left" width="600"><label>Competencias Genéricas:</label><?php echo $data_mat->competenciasGen; ?><br><br><label>Competencias Específicas:</label><?php echo $data_mat->competenciasEsp; ?></td>
         </tr>
       </table>
   </page>
@@ -140,13 +152,13 @@ ob_start();
       </table>
       <table align ="center" border="1">
         <tr>
-          <td align="center" width="250">1er Reporte</td><td width="300"></td>
+          <td align="center" width="250">1er Reporte</td><td align="center" width="300"><?php echo $data_mat->primeraEvaluacion; ?></td>
         </tr>
         <tr>
-          <td align="center" width="250">2do Reporte</td><td width="300"></td>
+          <td align="center" width="250">2do Reporte</td><td align="center" width="300"><?php echo $data_mat->segundaEvaluacion; ?></td>
         </tr>
         <tr>
-          <td align="center" width="250">3er Reporte</td><td width="300"></td>
+          <td align="center" width="250">3er Reporte</td><td align="center" width="300"><?php echo $data_mat->terceraEvaluacion; ?></td>
         </tr>
       </table>
 
@@ -157,14 +169,14 @@ ob_start();
       </table>
       <table align="center" border="1">
         <tr>
-          <td width="200">Horas Totales de Unidad de Aprendizaje</td><td width="200"></td><td width="200"></td>
+          <td width="200">Horas Totales de Unidad de Aprendizaje</td><td width="200"></td><td width="200"><?php echo $data_mat->horasUnidad; ?></td>
         </tr>
         <tr>
           <td width="200">Horas Totales Con Docente</td><td colspan="2">
 
             <table border="1">
               <tr>
-                <td width="200">Teóricas</td><td width="200">Prácticas</td>
+                <td width="200">Teóricas: <?php echo $data_mat->horasTeoDoc; ?></td><td width="200">Prácticas: <?php echo $data_mat->horasPracDoc; ?></td>
               </tr>
             </table>
           </td>
@@ -181,7 +193,7 @@ ob_start();
         <td width="200">Gupo</td><td width="200">No. Alumnos</td><td width="200">Salón</td>
       </tr>
       <tr>
-        <td><br></td><td><br></td><td><br></td>
+        <td><?php echo $data_mat->grupo; ?></td><td><?php echo $data_mat->numAlumnos; ?></td><td><?php echo $data_mat->salon; ?></td>
       </tr>
     </table>
   </page>
@@ -194,28 +206,28 @@ ob_start();
     </table>
     <table align="center" border="1">
       <tr>
-        <td width="220">FECHA</td><td width="380"></td>
+        <td width="220">FECHA</td><td width="380"><?php echo $data_unid->fecha; ?></td>
       </tr>
       <tr>
-        <td width="220">APRENDIZAJES ESPERADOS</td><td></td>
+        <td width="220">APRENDIZAJES ESPERADOS</td><td><?php echo $data_unid->aprenEsp; ?></td>
       </tr>
       <tr>
-        <td width="220">ESTRATEGIAS DE APRENDIZAJE</td><td></td>
+        <td width="220">ESTRATEGIAS DE APRENDIZAJE</td><td><?php echo $data_unid->estApren; ?></td>
       </tr>
       <tr>
-        <td width="220">RECURSOS DIDÁCTICOS Y OBJETIVOS DE APRENDIZAJE</td><td></td>
+        <td width="220">RECURSOS DIDÁCTICOS Y OBJETIVOS DE APRENDIZAJE</td><td><?php echo $data_unid->recursos; ?></td>
       </tr>
       <tr>
-        <td width="220">EVIDENCIAS DE APRENDIZAJE</td><td></td>
+        <td width="220">EVIDENCIAS DE APRENDIZAJE</td><td><?php echo $data_unid->evidencias; ?></td>
       </tr>
       <tr>
         <td width="220">TIPOS DE EVALUACIÓN</td><td></td>
       </tr>
       <tr>
-        <td width="220">INSTRUMETOS DE EVALUACIÓN</td><td></td>
+        <td width="220">INSTRUMETOS DE EVALUACIÓN</td><td><?php echo $data_unid->instrumentosEvaluacion; ?></td>
       </tr>
       <tr>
-        <td width="220">CRITERIOS DE EVALUACIÓN Y PONDERACIÓN</td><td></td>
+        <td width="220">CRITERIOS DE EVALUACIÓN Y PONDERACIÓN</td><td><?php echo $data_unid->ponderacion; ?></td>
       </tr>
     </table>
   </page>

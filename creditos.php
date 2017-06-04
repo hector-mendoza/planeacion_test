@@ -4,48 +4,34 @@
 	<body>
 		<?php include('script.php'); ?>
 		<div id="wrapper">
-			<!-- Navigation -->
-			<h1 align="center">UVAQ</h1>
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" align="center">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 				<?php include("navbarHeader.php"); include("sidebar.php"); ?>
-				<input type="button" name="" value="Contacto">
-				<input type="button" name="" value="Menú Principal">
-				<input type="button" name="" value="Quejas y Sugerencias">
-			</nav><br><br>
+			</nav>
 			<div id="page-wrapper">
 				<div class="container-fluid">
-					<section class="container" align="center">
-						<h2><b>Facultad De Ingenierías</b></h2>
-						<div class="container-page">
-
-
-							<table align="center">
-								<th><h3>Proyecto Desarrollado Por:</h3></th>
-								<tr><td align="center"><li>Hector Daiel López Mendoza</li></td></tr>
-								<tr><td><li>Pablo Efraín Cipres Valdez</li></td></tr>
-								<tr><td><li>Abel Velazques Portillo</li></td></tr>
-								<tr><td><li>Sebastian Constancio Arciga Díaz</li></td></tr>
-								<tr><td><li>Edgar Jaime Mendoza Coronel</li></td></tr>
-								<tr><td><li>Daniel de Maria y Campos Llorente</li></td></tr>
-								<tr>
-									<th><h3>Con Asesoría y Supervisión de:</h3></th>
-
-								</tr>
-								<tr>
-									<td><li>Ing. Jorge Regalado Meza</li></td>
-								</tr>
-
-
-
-
-
-							</table>
-
-
+					<div class="container-fluid">
+						<div class="col-lg-12">
+							<h2 class="page-header text-center">CRÉDITOS</h2>
+							<div class="jumbotron">
+								<h3>Desarrollo:</h3>
+								<table class="table table-hover table-responsive">
+									<tr><td><li>Héctor Dainel López Mendoza Mendoza</li></td></tr>
+									<tr><td><li>Pablo Efraín Valdez Ciprés</li></td></tr>
+									<tr><td><li>Abel Velázques Portillo</li></td></tr>
+									<tr><td><li>Sebastián Constancio Árciga Díaz</li></td></tr>
+									<tr><td><li>Edgar Jaime Mendoza Coronel</li></td></tr>
+									<tr><td><li>Daniel de Maria y Campos Llorente</li></td></tr>
+								</table>
+								<h3>Asesoría y Supervisión:</h3>
+								<table class="table table-hover table-responsive">
+									<tr>
+										<td><li>Ing. Jorge Regalado Meza</li></td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					</section>
+					</div>
 				</div>
 			</div>
-		</div>
-	</body>
-</html>
+		</body>
+	</html>

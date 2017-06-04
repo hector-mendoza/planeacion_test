@@ -5,16 +5,22 @@ if (!isset($_SESSION['id_usuario'])) {
 	header("Location: login.php");
 }
 extract($_POST);
+
 $sql = "INSERT INTO materias VALUES('','$plan','$unidad','$grado', '$fecha', '$proposito', '$genericas', '$especificas',
 	'$primer_rep', '$seg_rep', '$tercer_rep', '$totalhoras', '$docenteteoricas', '$docentepracticas', '$indep_teo',
-	'$indep_pract', '$total_alumnos', '$salon', '$complem', '$', '$')";
+	'$indep_pract', '$total_alumnos', '$salon', '$grupo', 1, '$ciclo')";
 
-if (mysql_query($link, $sql)) {
+$lastId = mysqli_insert_id($link);
+
+$sql_unicomp = "INSERT INTO unidadescompetencia VALUES ('', '$lastId', '$fechaUnidades', '$temaUnidades', '$ap_esp', '$est_ap', '$recursos', '$evid_ap', 2, 2, '$criterio')";
+
+if (mysqli_query($link, $sql)) {
 	$lastId = mysqli_insert_id($link);
-	echo $lastId;
+	mysqli_query($link, $sql_unicomp);
 }
 
-mysql_query("INSERT INTO  VALUES ('', )");
+header("Location: materias.php");
+
 
 
 

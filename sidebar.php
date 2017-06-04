@@ -32,9 +32,9 @@
         <!--<li>
             <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
         </li>-->
-        <li>
+        <!--         <li>
             <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Cambio interfaz</a>
-        </li>
+        </li> -->
         <li>
             <a href="creditos.php"><i class="glyphicon glyphicon-thumbs-up"></i> Créditos</a>
         </li>

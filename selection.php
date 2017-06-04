@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Planeación UVAQ</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    </head>
+    <?php include('head.php'); ?>
     <body>
+    <?php include 'script.php'; ?>
         <div class="container">
             <form id="selectionForm" class="form-horizontal" role="form" method="POST" action="#">
                 <div id="selectMateria" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
@@ -87,13 +82,18 @@
                             <div class="form-group">
                                 <label for="email" class="col-md-3 control-label">Temario</label>
                                 <div class="col-md-9">
-                                    <textarea name="temario" class="form-control" placeholder="Pega tu temario aquí"></textarea>
+                                    <textarea name="temario" class="form-control" id="temario" rows="20" placeholder="Pega tu temario aquí">HOLA</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <!-- Button -->
                                 <div class="col-md-offset-3 col-md-9">
-                                    <input type="submit" name="submit" value="SIGUIENTE" class="btn btn-info btn-lg">
+                                    <input type="submit" name="submit" value="SIGUIENTE" class="btn btn-info btn-lg" onClick="getTemario()">
+                                    <script>
+                                        function getTemario(){
+                                            console.log($('#temario').val());
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +101,5 @@
                 </div>
             </form>
         </div>
-        <script src="js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
