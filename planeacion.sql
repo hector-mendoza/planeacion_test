@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 22, 2017 at 11:01 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-06-2017 a las 22:06:56
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `planeacion`
+-- Base de datos: `planeacion`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carreras`
+-- Estructura de tabla para la tabla `carreras`
 --
 
 CREATE TABLE `carreras` (
@@ -35,7 +35,7 @@ CREATE TABLE `carreras` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coreos`
+-- Estructura de tabla para la tabla `coreos`
 --
 
 CREATE TABLE `coreos` (
@@ -47,7 +47,7 @@ CREATE TABLE `coreos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `direcciones`
+-- Estructura de tabla para la tabla `direcciones`
 --
 
 CREATE TABLE `direcciones` (
@@ -59,7 +59,30 @@ CREATE TABLE `direcciones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materias`
+-- Estructura de tabla para la tabla `instrumentosevaluacion`
+--
+
+CREATE TABLE `instrumentosevaluacion` (
+  `id_instrumento` int(11) NOT NULL,
+  `instrumento` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `instrumentosevaluacion`
+--
+
+INSERT INTO `instrumentosevaluacion` (`id_instrumento`, `instrumento`) VALUES
+(1, 'Lista de Cotejo'),
+(2, 'Portafolio'),
+(3, 'Rúbrica'),
+(4, 'Examen de Competencias'),
+(5, 'Mapas Conceptuales'),
+(7, 'Cuestionario');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `materias`
 --
 
 CREATE TABLE `materias` (
@@ -81,90 +104,133 @@ CREATE TABLE `materias` (
   `horasPracInd` int(11) NOT NULL,
   `numAlumnos` int(11) NOT NULL,
   `salon` varchar(15) NOT NULL,
-  `refComp` mediumtext NOT NULL,
+  `grupo` varchar(20) NOT NULL,
   `id_carrera` int(11) NOT NULL,
-  `id_periodo` int(11) NOT NULL
+  `ciclo` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `materias`
+--
+
+INSERT INTO `materias` (`id_materia`, `nombrePlan`, `nombreUnidad`, `semestre`, `fecha`, `proposito`, `competenciasGen`, `competenciasEsp`, `primeraEvaluacion`, `segundaEvaluacion`, `terceraEvaluacion`, `horasUnidad`, `horasTeoDoc`, `horasPracDoc`, `horasTeoInd`, `horasPracInd`, `numAlumnos`, `salon`, `grupo`, `id_carrera`, `ciclo`) VALUES
+(1, 'Ing. Sistemas Computacionales', 'Arq. Computadoras', '7', '2017-05-30', 'fdsfa', 'asdf', 'asdf', '2017-05-11', '2017-01-02', '2017-01-01', 1, 1, 1, 1, 1, 1, '2e', '2E', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `periodos`
+-- Estructura de tabla para la tabla `materiasxdocente`
+--
+
+CREATE TABLE `materiasxdocente` (
+  `id_md` int(11) NOT NULL,
+  `id_materia` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `materiasxdocente`
+--
+
+INSERT INTO `materiasxdocente` (`id_md`, `id_materia`, `id_usuario`) VALUES
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `periodos`
 --
 
 CREATE TABLE `periodos` (
   `id_periodo` int(11) NOT NULL,
   `fechaInicio` date NOT NULL,
-  `fechaFin` date NOT NULL,
-  `id_carrera` int(11) NOT NULL
+  `fechaFin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `permisos`
 --
 
 CREATE TABLE `permisos` (
   `id_permiso` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_materia` int(11) NOT NULL,
   `permiso` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referencias`
+-- Estructura de tabla para la tabla `referencias`
 --
 
 CREATE TABLE `referencias` (
-  `isbn` int(30) NOT NULL,
+  `id_referencia` int(11) NOT NULL,
+  `isbn` varchar(30) NOT NULL,
   `autor` varchar(80) NOT NULL,
-  `titulo` varchar(80) NOT NULL,
   `fecha` date NOT NULL,
+  `titulo` varchar(80) NOT NULL,
   `editorial` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referenciasxmateria`
+-- Estructura de tabla para la tabla `referenciasxmateria`
 --
 
 CREATE TABLE `referenciasxmateria` (
   `id_materia` int(11) NOT NULL,
-  `isbn` int(30) NOT NULL
+  `isbn` varchar(30) NOT NULL,
+  `tipo_referencia` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `telefonos`
+-- Estructura de tabla para la tabla `telefonos`
 --
 
 CREATE TABLE `telefonos` (
   `id_telefono` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_tipoTel` int(11) NOT NULL,
   `telefono` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `telefonos`
+--
+
+INSERT INTO `telefonos` (`id_telefono`, `id_usuario`, `telefono`) VALUES
+(1, 1, '3142826');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiposevaluacion`
+-- Estructura de tabla para la tabla `tiposevaluacion`
 --
 
 CREATE TABLE `tiposevaluacion` (
   `id_tipoEvaluacion` int(11) NOT NULL,
-  `tipoEvaluacion` varchar(20) NOT NULL
+  `tipoEvaluacion` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tiposevaluacion`
+--
+
+INSERT INTO `tiposevaluacion` (`id_tipoEvaluacion`, `tipoEvaluacion`) VALUES
+(1, 'Diagnostica'),
+(2, 'Formativa'),
+(3, 'Sumativa'),
+(4, 'Autoevaluacion'),
+(5, 'Heteroevaluacion'),
+(6, 'Coevaluacion');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipotel`
+-- Estructura de tabla para la tabla `tipotel`
 --
 
 CREATE TABLE `tipotel` (
@@ -175,7 +241,7 @@ CREATE TABLE `tipotel` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipousuario`
+-- Estructura de tabla para la tabla `tipousuario`
 --
 
 CREATE TABLE `tipousuario` (
@@ -186,15 +252,13 @@ CREATE TABLE `tipousuario` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unidadescompetencia`
+-- Estructura de tabla para la tabla `unidadescompetencia`
 --
 
 CREATE TABLE `unidadescompetencia` (
   `id_unidades` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `horaInicio` date NOT NULL,
-  `horaFin` date NOT NULL,
   `tema` varchar(60) NOT NULL,
   `aprenEsp` text NOT NULL,
   `estApren` text NOT NULL,
@@ -205,173 +269,212 @@ CREATE TABLE `unidadescompetencia` (
   `ponderacion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `unidadescompetencia`
+--
+
+INSERT INTO `unidadescompetencia` (`id_unidades`, `id_materia`, `fecha`, `tema`, `aprenEsp`, `estApren`, `recursos`, `evidencias`, `id_tipoEvaluacion`, `instrumentosEvaluacion`, `ponderacion`) VALUES
+(1, 1, '2017-05-16', 'hola', 'hola', 'hola', 'hol', 'hola', 2, '2', 'hola');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `apellidoPat` varchar(40) NOT NULL,
-  `apellidoMat` varchar(40) NOT NULL,
+  `apellido` varchar(40) NOT NULL,
   `pass` varchar(40) NOT NULL,
-  `id_tipoUsuario` int(11) NOT NULL
+  `correo` varchar(50) NOT NULL,
+  `grado_academ` varchar(50) NOT NULL,
+  `formacion` varchar(40) NOT NULL,
+  `admin` int(1) NOT NULL,
+  `director` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `nombre`, `apellido`, `pass`, `correo`, `grado_academ`, `formacion`, `admin`, `director`) VALUES
+(1, 'hec1702', 'Hector', 'Mendoza', '123', 'hec1702@gmail.com', 'Licenciatura', 'Lic', 0, 0);
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `carreras`
+-- Indices de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   ADD PRIMARY KEY (`id_carrera`);
 
 --
--- Indexes for table `coreos`
+-- Indices de la tabla `coreos`
 --
 ALTER TABLE `coreos`
   ADD PRIMARY KEY (`id_correo`);
 
 --
--- Indexes for table `direcciones`
+-- Indices de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
   ADD PRIMARY KEY (`id_direcciones`);
 
 --
--- Indexes for table `materias`
+-- Indices de la tabla `instrumentosevaluacion`
+--
+ALTER TABLE `instrumentosevaluacion`
+  ADD PRIMARY KEY (`id_instrumento`);
+
+--
+-- Indices de la tabla `materias`
 --
 ALTER TABLE `materias`
   ADD PRIMARY KEY (`id_materia`);
 
 --
--- Indexes for table `periodos`
+-- Indices de la tabla `materiasxdocente`
+--
+ALTER TABLE `materiasxdocente`
+  ADD PRIMARY KEY (`id_md`);
+
+--
+-- Indices de la tabla `periodos`
 --
 ALTER TABLE `periodos`
   ADD PRIMARY KEY (`id_periodo`);
 
 --
--- Indexes for table `permisos`
+-- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD PRIMARY KEY (`id_permiso`);
 
 --
--- Indexes for table `referencias`
+-- Indices de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  ADD PRIMARY KEY (`isbn`);
+  ADD PRIMARY KEY (`id_referencia`);
 
 --
--- Indexes for table `telefonos`
+-- Indices de la tabla `telefonos`
 --
 ALTER TABLE `telefonos`
   ADD PRIMARY KEY (`id_telefono`);
 
 --
--- Indexes for table `tiposevaluacion`
+-- Indices de la tabla `tiposevaluacion`
 --
 ALTER TABLE `tiposevaluacion`
   ADD PRIMARY KEY (`id_tipoEvaluacion`);
 
 --
--- Indexes for table `tipotel`
+-- Indices de la tabla `tipotel`
 --
 ALTER TABLE `tipotel`
   ADD PRIMARY KEY (`id_tipoTel`);
 
 --
--- Indexes for table `tipousuario`
+-- Indices de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`id_tipoUsuario`);
 
 --
--- Indexes for table `unidadescompetencia`
+-- Indices de la tabla `unidadescompetencia`
 --
 ALTER TABLE `unidadescompetencia`
   ADD PRIMARY KEY (`id_unidades`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `carreras`
+-- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `coreos`
+-- AUTO_INCREMENT de la tabla `coreos`
 --
 ALTER TABLE `coreos`
   MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `direcciones`
+-- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
   MODIFY `id_direcciones` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `materias`
+-- AUTO_INCREMENT de la tabla `instrumentosevaluacion`
+--
+ALTER TABLE `instrumentosevaluacion`
+  MODIFY `id_instrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `periodos`
+-- AUTO_INCREMENT de la tabla `materiasxdocente`
+--
+ALTER TABLE `materiasxdocente`
+  MODIFY `id_md` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `periodos`
 --
 ALTER TABLE `periodos`
   MODIFY `id_periodo` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `permisos`
+-- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `referencias`
+-- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `isbn` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `telefonos`
+-- AUTO_INCREMENT de la tabla `telefonos`
 --
 ALTER TABLE `telefonos`
-  MODIFY `id_telefono` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_telefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `tiposevaluacion`
+-- AUTO_INCREMENT de la tabla `tiposevaluacion`
 --
 ALTER TABLE `tiposevaluacion`
-  MODIFY `id_tipoEvaluacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipoEvaluacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `tipotel`
+-- AUTO_INCREMENT de la tabla `tipotel`
 --
 ALTER TABLE `tipotel`
   MODIFY `id_tipoTel` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tipousuario`
+-- AUTO_INCREMENT de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
   MODIFY `id_tipoUsuario` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `unidadescompetencia`
+-- AUTO_INCREMENT de la tabla `unidadescompetencia`
 --
 ALTER TABLE `unidadescompetencia`
-  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

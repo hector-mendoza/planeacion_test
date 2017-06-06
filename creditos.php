@@ -13,7 +13,7 @@
 						<div class="col-lg-12">
 							<h2 class="page-header text-center">CRÉDITOS</h2>
 							<div class="jumbotron">
-								<h3>Desarrollo:</h3>
+								<h3>Desarrollo:</h3> <h4>Ing. Sistemas Computacionales 8° semestre.</h4>
 								<table class="table table-hover table-responsive">
 									<tr><td><li>Héctor Dainel López Mendoza Mendoza</li></td></tr>
 									<tr><td><li>Pablo Efraín Valdez Ciprés</li></td></tr>
