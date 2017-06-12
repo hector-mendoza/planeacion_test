@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2017 a las 22:06:56
+-- Tiempo de generación: 12-06-2017 a las 23:44:23
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.5.38
 
@@ -32,6 +32,13 @@ CREATE TABLE `carreras` (
   `id_direccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `carreras`
+--
+
+INSERT INTO `carreras` (`id_carrera`, `carrera`, `id_direccion`) VALUES
+(1, 'Psicología', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -53,8 +60,16 @@ CREATE TABLE `coreos` (
 CREATE TABLE `direcciones` (
   `id_direcciones` int(11) NOT NULL,
   `direccion` varchar(15) NOT NULL,
-  `director` int(11) NOT NULL
+  `director` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `direcciones`
+--
+
+INSERT INTO `direcciones` (`id_direcciones`, `direccion`, `director`) VALUES
+(1, 'Psicología', 'Aurora Correa'),
+(2, 'Ingenierías', 'Juan Manuel Palomares Muñoz');
 
 -- --------------------------------------------------------
 
@@ -114,7 +129,28 @@ CREATE TABLE `materias` (
 --
 
 INSERT INTO `materias` (`id_materia`, `nombrePlan`, `nombreUnidad`, `semestre`, `fecha`, `proposito`, `competenciasGen`, `competenciasEsp`, `primeraEvaluacion`, `segundaEvaluacion`, `terceraEvaluacion`, `horasUnidad`, `horasTeoDoc`, `horasPracDoc`, `horasTeoInd`, `horasPracInd`, `numAlumnos`, `salon`, `grupo`, `id_carrera`, `ciclo`) VALUES
-(1, 'Ing. Sistemas Computacionales', 'Arq. Computadoras', '7', '2017-05-30', 'fdsfa', 'asdf', 'asdf', '2017-05-11', '2017-01-02', '2017-01-01', 1, 1, 1, 1, 1, 1, '2e', '2E', 1, 1);
+(1, 'Ing. Sistemas Computacionales', 'Arq. Computadoras', '7', '2017-05-30', 'fdsfa', 'asdf', 'asdf', '2017-05-11', '2017-01-02', '2017-01-01', 1, 1, 1, 1, 1, 1, '2e', '2E', 1, 1),
+(2, 'Mecatronica', 'Admon. Centros de cÃ³mputo', '8', '2017-06-12', 'Asistir a los alumnos', 'Familiarizacion', 'Competencias', '2017-06-13', '2017-07-11', '2017-07-25', 12, 12, 12, 12, 12, 25, 'A', '3', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `materiasxcarrera`
+--
+
+CREATE TABLE `materiasxcarrera` (
+  `id_mc` int(11) NOT NULL,
+  `materia` varchar(45) COLLATE latin1_bin NOT NULL,
+  `semestre` int(20) NOT NULL,
+  `id_carrera` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+
+--
+-- Volcado de datos para la tabla `materiasxcarrera`
+--
+
+INSERT INTO `materiasxcarrera` (`id_mc`, `materia`, `semestre`, `id_carrera`) VALUES
+(1, 'Estadística Descriptiva', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +169,8 @@ CREATE TABLE `materiasxdocente` (
 --
 
 INSERT INTO `materiasxdocente` (`id_md`, `id_materia`, `id_usuario`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -260,13 +297,13 @@ CREATE TABLE `unidadescompetencia` (
   `id_materia` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `tema` varchar(60) NOT NULL,
-  `aprenEsp` text NOT NULL,
-  `estApren` text NOT NULL,
-  `recursos` text NOT NULL,
-  `evidencias` text NOT NULL,
+  `aprenEsp` varchar(80) NOT NULL,
+  `estApren` varchar(80) NOT NULL,
+  `recursos` varchar(45) NOT NULL,
+  `evidencias` varchar(50) NOT NULL,
   `id_tipoEvaluacion` int(11) NOT NULL,
-  `instrumentosEvaluacion` text NOT NULL,
-  `ponderacion` text NOT NULL
+  `instrumentosEvaluacion` varchar(45) NOT NULL,
+  `ponderacion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -274,7 +311,8 @@ CREATE TABLE `unidadescompetencia` (
 --
 
 INSERT INTO `unidadescompetencia` (`id_unidades`, `id_materia`, `fecha`, `tema`, `aprenEsp`, `estApren`, `recursos`, `evidencias`, `id_tipoEvaluacion`, `instrumentosEvaluacion`, `ponderacion`) VALUES
-(1, 1, '2017-05-16', 'hola', 'hola', 'hola', 'hol', 'hola', 2, '2', 'hola');
+(1, 1, '2017-05-16', 'hola', 'hola', 'hola', 'hol', 'hola', 2, '2', 'hola'),
+(2, 2, '2017-06-13', 'Arquitectura', 'Aprender arquitectura', '>QQQ (veo, no veo, infiero)', 'he', 'Resistencias', 2, '2', 'Examen 100%');
 
 -- --------------------------------------------------------
 
@@ -300,7 +338,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `nombre`, `apellido`, `pass`, `correo`, `grado_academ`, `formacion`, `admin`, `director`) VALUES
-(1, 'hec1702', 'Hector', 'Mendoza', '123', 'hec1702@gmail.com', 'Licenciatura', 'Lic', 0, 0);
+(1, 'hec1702', 'Hector', 'Mendoza', '123', 'hec1702@gmail.com', 'Licenciatura', 'Lic', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -335,6 +373,12 @@ ALTER TABLE `instrumentosevaluacion`
 --
 ALTER TABLE `materias`
   ADD PRIMARY KEY (`id_materia`);
+
+--
+-- Indices de la tabla `materiasxcarrera`
+--
+ALTER TABLE `materiasxcarrera`
+  ADD PRIMARY KEY (`id_mc`);
 
 --
 -- Indices de la tabla `materiasxdocente`
@@ -404,7 +448,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
-  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `coreos`
 --
@@ -414,7 +458,7 @@ ALTER TABLE `coreos`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id_direcciones` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_direcciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `instrumentosevaluacion`
 --
@@ -424,12 +468,17 @@ ALTER TABLE `instrumentosevaluacion`
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `materiasxcarrera`
+--
+ALTER TABLE `materiasxcarrera`
+  MODIFY `id_mc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `materiasxdocente`
 --
 ALTER TABLE `materiasxdocente`
-  MODIFY `id_md` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_md` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `periodos`
 --
@@ -469,7 +518,7 @@ ALTER TABLE `tipousuario`
 -- AUTO_INCREMENT de la tabla `unidadescompetencia`
 --
 ALTER TABLE `unidadescompetencia`
-  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
