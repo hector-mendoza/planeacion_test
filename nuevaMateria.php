@@ -491,7 +491,8 @@
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
-                                        <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" ></textarea><br><br>
+                                        <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" ></textarea><br>
+                                        <a href="#agregarRef" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
                                         <input type="radio" id="in-category-20" name="category8" value="LISTO"> <b>LISTO</b>
                                     </div>
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
@@ -510,16 +511,66 @@
                                         });
                                         </script> -->
                                     </div>
+                                    <div id="agregarRef" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Agregar Referencia</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Formulario para agregar referencia.</p>
+                                                    <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
+                                                    <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRef" value="" ><br>
+                                                    <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRef" value="" ><br>
+                                                    Fecha:
+                                                    <input type="date" name="fechaRef"><br><br>
+                                                    <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRef" value="" ><br>
+                                                    <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRef" value="" ><br>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
                                     <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
-                                        <textarea class="form-control" name="complem" placeholder="Referencias Complementarias" rows="5" cols="25" ></textarea><br><br>
+                                        <textarea class="form-control" name="complem" placeholder="Referencias Complementarias" rows="5" cols="25" ></textarea><br>
+                                        <a href="#agregarRefComp" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
                                         <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b>
                                     </div>
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#nineStep').hide(); $('#eightStep').show()" >ATRAS</button>
                                         <input type="submit" name="submit" class="btn btn-danger btn-lg" value="TERMINAR">
+                                    </div>
+                                    <div id="agregarRefComp" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Agregar Referencia Complementaria</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Formulario para agregar referencia complementaria.</p>
+                                                    <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
+                                                    <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRefComp" value="" ><br>
+                                                    <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRefComp" value="" ><br>
+                                                    Fecha:
+                                                    <input type="date" name="fechaRefComp"><br><br>
+                                                    <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRefComp" value="" ><br>
+                                                    <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRefComp" value="" ><br>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
