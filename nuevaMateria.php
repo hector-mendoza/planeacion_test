@@ -488,7 +488,7 @@
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#eightStep').show()">SEGUIR</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
+                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;" id="agrRefDiv">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
                                         <textarea class="form-control" name="basicas" placeholder="Referencias Básicas" rows="5" cols="25" ></textarea><br>
@@ -511,30 +511,6 @@
                                         });
                                         </script> -->
                                     </div>
-                                    <div id="agregarRef" class="modal fade">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Agregar Referencia</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Formulario para agregar referencia.</p>
-                                                    <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
-                                                    <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRef" value="" ><br>
-                                                    <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRef" value="" ><br>
-                                                    Fecha:
-                                                    <input type="date" name="fechaRef"><br><br>
-                                                    <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRef" value="" ><br>
-                                                    <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRef" value="" ><br>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
@@ -548,38 +524,113 @@
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#nineStep').hide(); $('#eightStep').show()" >ATRAS</button>
                                         <input type="submit" name="submit" class="btn btn-danger btn-lg" value="TERMINAR">
                                     </div>
-                                    <div id="agregarRefComp" class="modal fade">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Agregar Referencia Complementaria</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Formulario para agregar referencia complementaria.</p>
-                                                    <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
-                                                    <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRefComp" value="" ><br>
-                                                    <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRefComp" value="" ><br>
-                                                    Fecha:
-                                                    <input type="date" name="fechaRefComp"><br><br>
-                                                    <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRefComp" value="" ><br>
-                                                    <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRefComp" value="" ><br>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
-                                                </div>
+                                </div>
+                            </form>
+                            <div id="agregarRef" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Agregar Referencia</h4>
+                                        </div>
+                                        <form id="agregarRefForm">
+                                            <div class="modal-body" id="modalForm">
+                                                <p>Formulario para agregar referencia.</p>
+                                                <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
+                                                <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRef" value="" required><br>
+                                                <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRef" value="" required><br>
+                                                Fecha:
+                                                <input type="date" id="fechaRef" required><br><br>
+                                                <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRef" value="" required><br>
+                                                <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRef" value="" required><br>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary" id="agregarRefBtt" onclick="agrAjax()">Agregar</button>
+                                           </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="agregarRefComp" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Agregar Referencia Complementaria</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Formulario para agregar referencia complementaria.</p>
+                                            <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
+                                            <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRefComp" value="" ><br>
+                                            <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRefComp" value="" ><br>
+                                            Fecha:
+                                            <input type="date" id="fechaRefComp"><br><br>
+                                            <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRefComp" value="" ><br>
+                                            <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRefComp" value="" ><br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary" id="agregarRefBtt" onclick="agrAjaxComp()">Agregar</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                            
+                            <script type="text/javascript">
+                                            function agrAjax(){
+                                                var isbn = $('#isbnRef').val();
+                                                var autor = $('#autorRef').val();
+                                                var fecha = $('#fechaRef').val();
+                                                var titulo = $('#tituloRef').val();
+                                                var editorial = $('#editorialRef').val();
+
+                                                if(isbn == '' || autor == '' || fecha == '' || titulo == '' || editorial == ''){
+                                                    alert("Favor de llenar todos los campos");
+                                                }
+                                                else{
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "agregarRef.php",
+                                                        data: {isbn:isbn,autor:autor,fecha:fecha,titulo:titulo,editorial:editorial},
+                                                        cache: true,
+                                                        success: function(html){
+                                                            alert(html);
+                                                        }  
+                                                    });
+                                                    $('#agregarRef').modal('hide');
+                                                }
+                                            };
+                                            function agrAjaxComp(){
+                                                var isbn = $('#isbnRefComp').val();
+                                                var autor = $('#autorRefComp').val();
+                                                var fecha = $('#fechaRefComp').val();
+                                                var titulo = $('#tituloRefComp').val();
+                                                var editorial = $('#editorialRefComp').val();
+
+                                                if(isbn == '' || autor == '' || fecha == '' || titulo == '' || editorial == ''){
+                                                    alert("Favor de llenar todos los campos");
+                                                }
+                                                else{
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "agregarRef.php",
+                                                        data: {isbn:isbn,autor:autor,fecha:fecha,titulo:titulo,editorial:editorial},
+                                                        cache: true,
+                                                        success: function(html){
+                                                            alert(html);
+                                                        }  
+                                                    });
+                                                    $('#agregarRefComp').modal('hide');
+                                                }
+                                            };
+                                        </script>
                         </section>
                     </div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- /#page-wrapper -->
             </div>
-            
         </body>
     </html>
