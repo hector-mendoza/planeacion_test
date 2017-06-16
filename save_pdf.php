@@ -5,14 +5,16 @@ if (!isset($_SESSION['id_usuario'])) {
 	header("Location: login.php");
 }
 extract($_POST);
-
-$sql = "INSERT INTO materias VALUES('','$plan','$unidad','$grado', '$fecha', '$proposito', '$genericas', '$especificas',
+$total_clases = $_GET['c'];
+$sql_carr = mysqli_query($link, "SELECT * FROM carreras WHERE id_carrera = $carrera ");
+$carr = mysqli_fetch_array($sql_carr);
+$sql = "INSERT INTO materias VALUES('','$carr[carrera]','$unidad','$grado', '$fecha', '$proposito', '$genericas', '$especificas',
 	'$primer_rep', '$seg_rep', '$tercer_rep', '$totalhoras', '$docenteteoricas', '$docentepracticas', '$indep_teo',
-	'$indep_pract', '$total_alumnos', '$salon', '$grupo', 1, '$ciclo')";
+	'$indep_pract', '$total_alumnos', '$salon', '$grupo', '$carr[id_carrera]', '$ciclo', '$_SESSION[id_usuario]')";
 
 $lastId = mysqli_insert_id($link);
 
-$sql_unicomp = "INSERT INTO unidadescompetencia VALUES ('', '$lastId', '$fechaUnidades', '$temaUnidades', '$ap_esp', '$est_ap', '$recursos', '$evid_ap', 2, 2, '$criterio')";
+$sql_unicomp = "INSERT INTO unidadescompetencia VALUES ('', '$lastId', '$fechaUnidades', '$temaUnidades', '$ap_esp', '$est_ap', '$recursos', '$evid_ap', '$tipo_eval', '$inst_eval', '$criterio')";
 
 if (mysqli_query($link, $sql)) {
 	$lastId = mysqli_insert_id($link);

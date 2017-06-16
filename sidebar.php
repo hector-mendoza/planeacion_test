@@ -22,7 +22,10 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Materias<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>
-                    <a href="nuevaMateria.php"> <i class="glyphicon glyphicon-plus"></i> Agregar materia</a>
+                    <a href="referencias.php"> <i class="glyphicon glyphicon-book"></i> Referencias</a>
+                </li>
+                <li>
+                    <a href="num_clases.php"> <i class="glyphicon glyphicon-plus"></i> Agregar materia</a>
                 </li>
                 <li>
                     <a href="materias.php"> <i class="glyphicon glyphicon-eye-open"></i> Ver materias</a>

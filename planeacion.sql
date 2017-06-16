@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2017 a las 23:44:23
+-- Tiempo de generación: 17-06-2017 a las 00:31:52
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.5.38
 
@@ -28,16 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carreras` (
   `id_carrera` int(11) NOT NULL,
-  `carrera` varchar(40) NOT NULL,
+  `carrera` varchar(40) CHARACTER SET latin1 NOT NULL,
   `id_direccion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `carreras`
 --
 
 INSERT INTO `carreras` (`id_carrera`, `carrera`, `id_direccion`) VALUES
-(1, 'Psicología', 1);
+(1, 'Psicologia', 1),
+(2, 'Dise&ntilde;o grafico', 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ CREATE TABLE `coreos` (
 --
 
 CREATE TABLE `direcciones` (
-  `id_direcciones` int(11) NOT NULL,
+  `id_direccion` int(11) NOT NULL,
   `direccion` varchar(15) NOT NULL,
   `director` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -67,9 +68,21 @@ CREATE TABLE `direcciones` (
 -- Volcado de datos para la tabla `direcciones`
 --
 
-INSERT INTO `direcciones` (`id_direcciones`, `direccion`, `director`) VALUES
+INSERT INTO `direcciones` (`id_direccion`, `direccion`, `director`) VALUES
 (1, 'Psicología', 'Aurora Correa'),
 (2, 'Ingenierías', 'Juan Manuel Palomares Muñoz');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `direccionesxdocente`
+--
+
+CREATE TABLE `direccionesxdocente` (
+  `id_dc` int(11) NOT NULL,
+  `id_direccion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -89,7 +102,7 @@ CREATE TABLE `instrumentosevaluacion` (
 INSERT INTO `instrumentosevaluacion` (`id_instrumento`, `instrumento`) VALUES
 (1, 'Lista de Cotejo'),
 (2, 'Portafolio'),
-(3, 'Rúbrica'),
+(3, 'R&uacute;brica'),
 (4, 'Examen de Competencias'),
 (5, 'Mapas Conceptuales'),
 (7, 'Cuestionario');
@@ -121,16 +134,17 @@ CREATE TABLE `materias` (
   `salon` varchar(15) NOT NULL,
   `grupo` varchar(20) NOT NULL,
   `id_carrera` int(11) NOT NULL,
-  `ciclo` int(30) NOT NULL
+  `ciclo` int(30) NOT NULL,
+  `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `materias`
 --
 
-INSERT INTO `materias` (`id_materia`, `nombrePlan`, `nombreUnidad`, `semestre`, `fecha`, `proposito`, `competenciasGen`, `competenciasEsp`, `primeraEvaluacion`, `segundaEvaluacion`, `terceraEvaluacion`, `horasUnidad`, `horasTeoDoc`, `horasPracDoc`, `horasTeoInd`, `horasPracInd`, `numAlumnos`, `salon`, `grupo`, `id_carrera`, `ciclo`) VALUES
-(1, 'Ing. Sistemas Computacionales', 'Arq. Computadoras', '7', '2017-05-30', 'fdsfa', 'asdf', 'asdf', '2017-05-11', '2017-01-02', '2017-01-01', 1, 1, 1, 1, 1, 1, '2e', '2E', 1, 1),
-(2, 'Mecatronica', 'Admon. Centros de cÃ³mputo', '8', '2017-06-12', 'Asistir a los alumnos', 'Familiarizacion', 'Competencias', '2017-06-13', '2017-07-11', '2017-07-25', 12, 12, 12, 12, 12, 25, 'A', '3', 2, 1);
+INSERT INTO `materias` (`id_materia`, `nombrePlan`, `nombreUnidad`, `semestre`, `fecha`, `proposito`, `competenciasGen`, `competenciasEsp`, `primeraEvaluacion`, `segundaEvaluacion`, `terceraEvaluacion`, `horasUnidad`, `horasTeoDoc`, `horasPracDoc`, `horasTeoInd`, `horasPracInd`, `numAlumnos`, `salon`, `grupo`, `id_carrera`, `ciclo`, `id_usuario`) VALUES
+(1, 'Ing. Sistemas Computacionales', 'Arq. Computadoras', '7', '2017-05-30', 'fdsfa', 'asdf', 'asdf', '2017-05-11', '2017-01-02', '2017-01-01', 1, 1, 1, 1, 1, 1, '5A', '2E', 1, 1, 1),
+(2, 'Mecatronica', 'Admon. Centros de cÃ³mputo', '8', '2017-06-12', 'Asistir a los alumnos', 'Familiarizacion', 'Competencias', '2017-06-13', '2017-07-11', '2017-07-25', 12, 12, 12, 12, 12, 25, '6A', '3', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +164,8 @@ CREATE TABLE `materiasxcarrera` (
 --
 
 INSERT INTO `materiasxcarrera` (`id_mc`, `materia`, `semestre`, `id_carrera`) VALUES
-(1, 'Estadística Descriptiva', 2, 1);
+(1, 'Estadística Descriptiva', 2, 1),
+(2, 'Estadistica Matematica', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -210,6 +225,15 @@ CREATE TABLE `referencias` (
   `editorial` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `referencias`
+--
+
+INSERT INTO `referencias` (`id_referencia`, `isbn`, `autor`, `fecha`, `titulo`, `editorial`) VALUES
+(1, '1995', 'Juan Armando', '2017-06-13', 'Antes del vuelo', 'Editoriales'),
+(2, '2056', 'Fernando', '2017-06-16', 'Vuelos', 'Aviones'),
+(3, '1231', 'Juan', '2016-11-30', 'Juanes', 'Editoriales');
+
 -- --------------------------------------------------------
 
 --
@@ -217,10 +241,18 @@ CREATE TABLE `referencias` (
 --
 
 CREATE TABLE `referenciasxmateria` (
+  `id_refmat` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
-  `isbn` varchar(30) NOT NULL,
+  `id_referencia` int(11) NOT NULL,
   `tipo_referencia` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `referenciasxmateria`
+--
+
+INSERT INTO `referenciasxmateria` (`id_refmat`, `id_materia`, `id_referencia`, `tipo_referencia`) VALUES
+(1, 1, 1, 'BASICA');
 
 -- --------------------------------------------------------
 
@@ -239,7 +271,8 @@ CREATE TABLE `telefonos` (
 --
 
 INSERT INTO `telefonos` (`id_telefono`, `id_usuario`, `telefono`) VALUES
-(1, 1, '3142826');
+(1, 1, '3142826'),
+(2, 2, '44312344');
 
 -- --------------------------------------------------------
 
@@ -338,7 +371,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `nombre`, `apellido`, `pass`, `correo`, `grado_academ`, `formacion`, `admin`, `director`) VALUES
-(1, 'hec1702', 'Hector', 'Mendoza', '123', 'hec1702@gmail.com', 'Licenciatura', 'Lic', 1, 0);
+(1, 'hec1702', 'Hector', 'Mendoza', '123', 'hec1702@gmail.com', 'Licenciatura', 'Lic', 1, 0),
+(2, 'rihch', 'Ricardo Ivan', 'Hinojosa', '123', 'rihch88@hotmail.com', 'Licenciatura', 'Licenciatura', 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -360,7 +394,13 @@ ALTER TABLE `coreos`
 -- Indices de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  ADD PRIMARY KEY (`id_direcciones`);
+  ADD PRIMARY KEY (`id_direccion`);
+
+--
+-- Indices de la tabla `direccionesxdocente`
+--
+ALTER TABLE `direccionesxdocente`
+  ADD PRIMARY KEY (`id_dc`);
 
 --
 -- Indices de la tabla `instrumentosevaluacion`
@@ -403,6 +443,12 @@ ALTER TABLE `permisos`
 --
 ALTER TABLE `referencias`
   ADD PRIMARY KEY (`id_referencia`);
+
+--
+-- Indices de la tabla `referenciasxmateria`
+--
+ALTER TABLE `referenciasxmateria`
+  ADD PRIMARY KEY (`id_refmat`);
 
 --
 -- Indices de la tabla `telefonos`
@@ -448,7 +494,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
-  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `coreos`
 --
@@ -458,7 +504,12 @@ ALTER TABLE `coreos`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id_direcciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `direccionesxdocente`
+--
+ALTER TABLE `direccionesxdocente`
+  MODIFY `id_dc` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `instrumentosevaluacion`
 --
@@ -473,7 +524,7 @@ ALTER TABLE `materias`
 -- AUTO_INCREMENT de la tabla `materiasxcarrera`
 --
 ALTER TABLE `materiasxcarrera`
-  MODIFY `id_mc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `materiasxdocente`
 --
@@ -493,12 +544,17 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `referenciasxmateria`
+--
+ALTER TABLE `referenciasxmateria`
+  MODIFY `id_refmat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `telefonos`
 --
 ALTER TABLE `telefonos`
-  MODIFY `id_telefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_telefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tiposevaluacion`
 --
@@ -523,7 +579,7 @@ ALTER TABLE `unidadescompetencia`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
