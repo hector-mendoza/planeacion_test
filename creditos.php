@@ -16,7 +16,7 @@
 								<h3>Desarrollo:</h3> <h4>Ing. Sistemas Computacionales 8° semestre.</h4>
 								<table class="table table-hover table-responsive">
 									<tr><td><li>Héctor Dainel López Mendoza Mendoza</li></td></tr>
-									<tr><td><li>Pablo Efraín Valdez Ciprés</li></td></tr>
+									<tr><td><li>Pablo Efraín Valdes Ciprés</li></td></tr>
 									<tr><td><li>Abel Velázques Portillo</li></td></tr>
 									<tr><td><li>Sebastián Constancio Árciga Díaz</li></td></tr>
 									<tr><td><li>Edgar Jaime Mendoza Coronel</li></td></tr>

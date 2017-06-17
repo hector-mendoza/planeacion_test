@@ -13,9 +13,14 @@
                 <?php 
                 $tipo = mysqli_query($link, "SELECT * FROM usuarios WHERE id_usuario = '$_SESSION[id_usuario]' ");
                 $data = mysqli_fetch_object($tipo);
-                if ($data->id_usuario === "2") {
+                if ($data->admin === "1") {
+                	$_SESSION["admin"] = true;
                     echo "admin";
-                }else{?>
+                }else{
+                	if($data->director === "1"){
+                		$_SESSION["director"] = true;
+                	}
+                	?>
                      <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">

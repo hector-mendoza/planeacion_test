@@ -1,7 +1,20 @@
+<?php
+?>
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li class="active">
-            <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Principal</a>
+            <?php
+            if($_SESSION['admin']){
+                ?>
+                <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Principal Admin</a>
+                <?php  
+            }
+            else{
+                ?>
+                <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Principal</a>
+                <?php 
+            }
+            ?>
         </li>
         <!-- <li>
             <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Estadísticas</a>
@@ -32,6 +45,18 @@
                 </li>
             </ul>
         </li>
+        <?php
+        if($_SESSION['admin']){
+            ?>
+            <li>
+                <a href="usuariosAdmin.php"><i class="glyphicon glyphicon-user"></i> Usuarios<i></i></a>
+            </li>
+            <li>
+                <a href="direccionesAdmin.php"><i class="glyphicon glyphicon-folder-close"></i> Direcciones<i></i></a>
+            </li>
+            <?php
+        }
+        ?>
         <!--<li>
             <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
         </li>-->
