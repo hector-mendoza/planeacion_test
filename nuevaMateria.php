@@ -507,7 +507,7 @@ if (isset($_POST['clases'])) {
                                 </div>
                             </div>
                             <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
-                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" id="divAgrRef1">
                                     <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
                                     <h5>*Mediante el <b>"ISBN / NOMBRE"</b> busca la referencia.</h5>
                                     <select class="selectpicker" data-live-search="true" name="ref_bas" id="ref_bas" multiple>
@@ -541,6 +541,7 @@ if (isset($_POST['clases'])) {
                                     });
                                     </script> -->
                                 </div>
+                                <!-- 
                                 <div id="agregarRef" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -567,6 +568,7 @@ if (isset($_POST['clases'])) {
                                         </div>
                                     </div>
                                 </div>
+
                                 <script>
                                  $(document).ready(function(){
                                      $('#insert_refBas').on("submit", function(event){  
@@ -602,10 +604,12 @@ if (isset($_POST['clases'])) {
                                       }  
                                      });
                                 </script>
+                                -->
                             </div>
+                            <!--
                             <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
                                
-                                <!-- <div id="agregarRefComp" class="modal fade">
+                                 <div id="agregarRefComp" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -647,10 +651,10 @@ if (isset($_POST['clases'])) {
                                         $("button[id='submit8']").removeAttr("disabled");
                                         }
                                         });
-                                        </script> -->
+                                        </script> 
                                     </div>
                                 </div>
-
+                                -->
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
                                     <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
