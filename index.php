@@ -15,12 +15,21 @@
                 $data = mysqli_fetch_object($tipo);
                 if ($data->admin === "1") {
                 	$_SESSION["admin"] = true;
-                    echo "admin";
-                }else{
-                	if($data->director === "1"){
-                		$_SESSION["director"] = true;
-                	}
-                	?>
+
+                }  
+
+                 if($data->director === "1"){
+                 $_SESSION["director"] = true;
+                    
+                    } 
+
+                    if($data->director === "0" && $data->director === "0"){
+                        $_SESSION["docente"] = true;
+                    
+                    }                  
+          	?>
+
+            
                      <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
@@ -61,9 +70,8 @@
                             </div>
                         </div>
                     </div>
-               <?php }
 
-                 ?>
+
                     <!-- Page Heading -->
                 </div>
             </div>
