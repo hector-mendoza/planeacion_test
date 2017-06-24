@@ -21,7 +21,7 @@
                         /*$matId = mysqli_query($link, "SELECT * FROM materias WHERE id_materia = $datos->id_materia") or die("<h2 align='center'>NO HAY RESULTADOS</h2>");*/
                         //$dataMateria = mysqli_fetch_arary($matId);
 
-                        $matId = mysqli_query($link, "SELECT * FROM materias WHERE id_usuario = $_SESSION[id_usuario] ");
+                        $matId = mysqli_query($link, "SELECT * FROM materias WHERE id_usuario = $_SESSION[id_usuario] ") or die("<h2>No hay resultados</h2>");
                         ?>
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                             <table class="table table-hover table-bordered table-responsive">
@@ -32,14 +32,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   <?php while ($row = mysqli_fetch_row($matId)) {
+                                   <?php 
+                                   if ($matId) {
+                                       while ($row = mysqli_fetch_row($matId)) {
                                     echo "
                                     <tr>
                                         <td>$row[1]</td>
                                         <td><a href='editar_pdf.php?id=".$row[0]."'>EDITAR</a><br><a href='pdf.php?id=".$row[0]."' target='_blank'>VER PDF</a></td>
                                     </tr>
                                     ";
-                                    } ?>
+                                    }
+                                   }else{
+                                    ?>
+                                        <h2>No hay resultados</h2>
+                                    <?php
+                                   }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

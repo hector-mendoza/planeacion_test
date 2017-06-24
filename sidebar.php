@@ -46,12 +46,12 @@ $data2 = mysql_fetch_assoc($res2);
                 <li>
                     <a href="referencias.php"> <i class="glyphicon glyphicon-book"></i> Referencias</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="num_clases.php"> <i class="glyphicon glyphicon-plus"></i> Agregar materia</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="materias.php"> <i class="glyphicon glyphicon-eye-open"></i> Ver materias</a>
-                </li>
+                </li> -->
             </ul>
         </li>
        

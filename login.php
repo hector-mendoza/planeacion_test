@@ -47,10 +47,10 @@
                             <div class="form-group">
                                 <div class="col-md-12 control">
                                     <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                        No tengo cuenta
-                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                        Si no tienes cuenta - Contacta al Administrador
+                                        <!-- <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
                                             Crear cuenta
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </div>

@@ -25,14 +25,7 @@ if (isset($_POST['clases'])) {
                 <div class="container-fluid">
                     <section class="container">
                         <div class="container-page">
-                            <form action='save_pdf.php?c=".$clases."' method="POST" accept-charset="utf-8">
-                                <!--  <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" id="firstStep">
-                                    <h3 class="dark-grey">Selección de Materia:</h3>
-                                    <div class="form-group col-lg-12 col-md-8">
-                                        <label>Ciclo / Plan: </label>
-                                        <input type="text" name="plan" class="form-control" id="plan" required>
-                                    </div>
-                                </div> -->
+                            <form action="save_pdf.php?c= <?php echo $clases; ?> " method="POST" accept-charset="utf-8">
                                 <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12" id="firstStep">
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
                                     
@@ -55,20 +48,20 @@ if (isset($_POST['clases'])) {
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Nombre Unidad Aprendizaje: </label>
-                                        <input type="text" name="unidad" class="form-control" id="unidad" placeholder="Nombre de la Materia" required>
+                                        <input type="text" name="unidad" class="form-control" id="unidad" placeholder="Nombre de la Materia" >
                                     </div>
                                     <!-- <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" required>
                                         <label>Núm. Clases: </label>
                                         <input type="number" name="clases" class="form-control" id="num_clases" placeholder="Número de Clases">
                                     </div> -->
-                                    <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" required>
+                                    <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" >
                                         <label>Ciclo: </label>
                                         <select name="ciclo" class="form-control">
-                                            <option value="1">2017 - 2018</option>
-                                            <option value="2">2018 - 2018</option>
-                                            <option value="3">2018 - 2019</option>
-                                            <option value="4">2019 - 2019</option>
-                                            <option value="5">2019 - 2020</option>
+                                            <option value="2017 - 2018">2017 - 2018</option>
+                                            <option value="2018 - 2018">2018 - 2018</option>
+                                            <option value="2018 - 2019">2018 - 2019</option>
+                                            <option value="2019 - 2019">2019 - 2019</option>
+                                            <option value="2019 - 2020">2019 - 2020</option>
                                         </select>
                                     </div>
                                     
@@ -290,11 +283,11 @@ if (isset($_POST['clases'])) {
                                                 for ($i=0; $i < $clases; $i++) {
                                                 ?>
                                                 <tr>
-                                                    <td><input type="date" class="form-control" name="fechaUnidades"></td>
-                                                    <td><textarea id="2" name="temaUnidades"></textarea></td>
-                                                    <td><textarea id="3" name="ap_esp"></textarea></td>
+                                                    <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"></td>
+                                                    <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"></textarea></td>
+                                                    <td><textarea id="3" name="ap_esp<?php echo $i; ?>"></textarea></td>
                                                     <td>
-                                                        INICIO: <select class="selectpicker" data-live-search="true" name="inicio" multiple>
+                                                        INICIO: <select class="selectpicker" data-live-search="true" name="inicio<?php echo $i; ?>[]">
                                                             <optgroup label="INICIO">
                                                                 <option value="Activacion de conocimientos previos">Activación de conocimientos previos</option>
                                                                 <option value="Anecdota">Anécdota</option>
@@ -302,7 +295,7 @@ if (isset($_POST['clases'])) {
                                                                 <option value="Presentacion del Tema">Presentación del Tema</option>
                                                             </optgroup>
                                                         </select>
-                                                        DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap" multiple>
+                                                        DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap<?php echo $i; ?>[]">
                                                             <optgroup label="TABLAS ACADÉMICAS">
                                                                 <option value="Matriz de inducción">1 Matriz de inducción</option>
                                                                 <option value="PNI (Positivo, Negativo, Interesante)">1 PNI (Positivo, Negativo, Interesante)</option>
@@ -369,7 +362,7 @@ if (isset($_POST['clases'])) {
                                                                 <option value="Cómic">Cómic</option>
                                                             </optgroup>
                                                             <optgroup label="MULTIMEDIA">
-                                                                <option value="Pelìculas">Pelìculas</option>
+                                                                <option value="Películas">Películas</option>
                                                                 <option value="Reportajes">Reportajes</option>
                                                                 <option value="Audios">Audios</option>
                                                                 <option value="Documentales">Documentales</option>
@@ -422,7 +415,7 @@ if (isset($_POST['clases'])) {
                                                                 <option value="Solucion de problemas">Solución de problemas</option>
                                                             </optgroup>
                                                         </select>
-                                                        CIERRE: <select class="selectpicker" name="cierre" data-live-search="true" multiple>
+                                                        CIERRE: <select class="selectpicker" name="cierre<?php echo $i; ?>[]" data-live-search="true">
                                                             <option value="Resumen">Resumen</option>
                                                             <option value="Conclusiones">Conclusiones</option>
                                                             <option value="Liga con el tema siguiente">Liga con el tema siguiente</option>
@@ -431,45 +424,25 @@ if (isset($_POST['clases'])) {
                                                         </select>
                                                     </td>
                                                     <td width="100">
+                                                        <select name="material<?php echo $i; ?>[]" class="selectpicker" data-live-search="true" multiple>
+                                                            <option value="Marcadores">Marcadores</option>
+                                                            <option value="Pintarron">Pintarron</option>
+                                                            <option value="Proyector">Proyector</option>
+                                                            <option value="Computadora">Computadora</option>
+                                                            <option value="Diapositivas">Diapositivas</option>
+                                                            <option value="Videos">Videos</option>
+                                                            <option value="Instrucciones">Instrucciones</option>
+                                                            <option value="Internet">Internet</option>
+                                                            <option value="Bocinas">Bocinas</option>
+                                                            <option value="Cables">Cables</option>
+                                                        </select>
+
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Marcadores</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Pintarrón</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Proyector</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Computadora</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Diapositivas</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Textos</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Videos</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Instrucciones</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Internet</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Bocinas</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Cables</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>Otros<input type="text" value=""></label>
+                                                            <label>Otros<input type="text" class="form-control" name="otros<?php echo $i; ?>" placeholder="Ingresa otro"></label>
                                                         </div>
                                                     </td>
-                                                    <td><textarea id="6" name="evid_ap"></textarea></td>
-                                                    <td><select class="selectpicker" data-live-search="true" name="tipo_eval" multiple>
+                                                    <td><textarea id="evid_ap" name="evid_ap<?php echo $i; ?>"></textarea></td>
+                                                    <td><select class="selectpicker" data-live-search="true" name="tipo_eval<?php echo $i; ?>">
                                                         <?php
                                                         include('conect.php');
                                                         mysql_query("SET NAMES 'utf8'", $link);
@@ -481,7 +454,7 @@ if (isset($_POST['clases'])) {
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="selectpicker" data-live-search="true" name="inst_eval" multiple>
+                                                    <select class="selectpicker" data-live-search="true" name="inst_eval<?php echo $i; ?>">
                                                         <?php
                                                         include('conect.php');
                                                         $tip_eval = mysqli_query($link,"SELECT * FROM instrumentosevaluacion");
@@ -491,7 +464,7 @@ if (isset($_POST['clases'])) {
                                                         ?>
                                                     </select>
                                                 </td>
-                                                <td><textarea id="9" name="criterio"></textarea></td>
+                                                <td><textarea id="9" name="criterio<?php echo $i; ?>"></textarea></td>
                                                 <?php
                                                 }
                                                 ?>
@@ -499,7 +472,7 @@ if (isset($_POST['clases'])) {
                                         </table><br><br>
                                     </div>
                                 </div>
-                                <center><input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b></center>
+                                <!-- <center><input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b></center> -->
                                 <br><br>
                                 <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#sixthStep').show()" >ATRAS</button>
@@ -510,20 +483,20 @@ if (isset($_POST['clases'])) {
                                 <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" id="divAgrRef1">
                                     <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
                                     <h5>*Mediante el <b>"ISBN / NOMBRE"</b> busca la referencia.</h5>
-                                    <select class="selectpicker" data-live-search="true" name="ref_bas" id="ref_bas" multiple>
-                                        <optgroup label="REFERENCIAS">
+                                    <select class="selectpicker" data-live-search="true" name="ref_bas[]" id="ref_bas">
+                                        <optgroup label="REFERENCIAS (ISBN, AUTOR, FECHA, TÍTULO, EDITORIAL)">
                                             <?php
                                             include('conect.php');
                                             $ref = mysqli_query($link,"SELECT * FROM referencias");
                                             while ($r = mysqli_fetch_row($ref)) {
-                                                echo "<option value='$r[0]'>$r[1] - $r[2]</option>";
+                                                echo "<option value='$r[0]'>$r[1], $r[2], $r[3], $r[4], $r[5]</option>";
                                             }
                                             ?>
                                         </optgroup>
                                     </select>
                                     <br><br>
                                     <a href="#agregarRef" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
-                                    <input type="radio" id="in-category-20" name="category8" value="LISTO"> <b>LISTO</b>
+                                    <!-- <input type="radio" id="in-category-20" name="category8" value="LISTO"> <b>LISTO</b> -->
                                 </div>
                                 <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#eightStep').hide(); $('#sevenStep').show()" >ATRAS</button>
@@ -658,9 +631,20 @@ if (isset($_POST['clases'])) {
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
                                     <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
-                                        <textarea class="form-control" name="complem" placeholder="Referencias Complementarias" rows="5" cols="25" ></textarea><br>
+                                        <select class="selectpicker" data-live-search="true" name="ref_com" id="ref_com">
+                                        <optgroup label="REFERENCIAS (ISBN, AUTOR, FECHA, TÍTULO, EDITORIAL)">
+                                            <?php
+                                                include('conect.php');
+                                                $ref = mysqli_query($link,"SELECT * FROM referencias");
+                                                while ($r = mysqli_fetch_row($ref)) {
+                                                    echo "<option value='$r[0]'>$r[1], $r[2], $r[3], $r[4], $r[5]</option>";
+                                                }
+                                            ?>
+                                            </optgroup>
+                                        </select>
+                                        <br><br>
                                         <a href="#agregarRefComp" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
-                                        <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b>
+                                        <!-- <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b> -->
                                     </div>
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#nineStep').hide(); $('#eightStep').show()" >ATRAS</button>
@@ -777,18 +761,3 @@ if (isset($_POST['clases'])) {
         </div>
     </body>
 </html>
-<!-- <script type="text/javascript">
-  $(document).ready(function(){
-    $("#marca").change(function(){
-    $.ajax({
-      url:"materias_carr.php",
-      type: "POST",
-      data:"id_materia="+$("#marca").val(),
-      success: function(opciones){
-        /*$("#modelo").html(opciones);*/
-        console.log('test');
-      }
-    })
-  });
-});
-</script> -->
