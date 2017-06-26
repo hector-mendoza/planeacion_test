@@ -12,7 +12,7 @@
 
 
 		if (mysqli_query($link, $sql)){
-			header("Location: usuariosAdmin.php");
+			header("Location: docentes.php");
 		}
 	}
 	else{
@@ -21,7 +21,7 @@
 
 
 		if (mysqli_query($link, $sql)){
-			header("Location: usuariosAdmin.php");
+			header("Location: docentes.php");
 		}
 	}
 ?>

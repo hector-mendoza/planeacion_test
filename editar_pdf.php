@@ -193,7 +193,7 @@ if (isset($submit)) {
                                     </div>
                                 </div>
 
-                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:;"">
+                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IV. FECHAS DE EVALUACIONES SUMATIVAS:</h3>
                                     </div>
@@ -335,8 +335,8 @@ if (isset($submit)) {
                                                 for ($i=0; $i < $clases; $i++) {
                                                 ?>
                                                 <tr>
-                                                    <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value="<?php echo $data1['fecha[$i]'];?>"></td>
-                                                    <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"></textarea></td>
+                                                    <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value="<?php echo $data1[fecha[$i]];?>"></td>
+                                                    <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"><?php echo $data1['tema'.$i]; ?></textarea></td>
                                                     <td><textarea id="3" name="ap_esp<?php echo $i; ?>"></textarea></td>
                                                     <td>
                                                         INICIO: <select class="selectpicker" data-live-search="true" name="inicio<?php echo $i; ?>[]">

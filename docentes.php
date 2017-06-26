@@ -10,12 +10,12 @@
             <div id="page-wrapper">
                 <div class="container-fluid table-responsive">
                     <h1 class="page-header">
-                    Lista Usuarios
+                    Lista Usuarios (AREA)
                     </h1>
                     <div class="col-md-12">
                         <?php
 
-                        $sql = mysqli_query($link, "SELECT * FROM usuarios where  admin = '0' and director = '0' ");
+                        $sql = mysqli_query($link, "SELECT * FROM usuarios where  admin = '0' and director = '0' and id_director = $_SESSION[id_usuario]");
                         ?>
                         <a href="#agregarUsr" class="btn btn-success" data-toggle="modal">+ AGREGAR</a><br><br>
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -67,16 +67,11 @@
                                     Correo: <input type="text" name="correo" id="correo" class="form-control" placeholder = "Correo" requiered>
                                     Grado académico: <input type="text" name="grado_academ" id="grado_academ" class="form-control" placeholder = "Grado Académico" requiered>
                                     Formación: <input type="text" name="formacion" id="formacion" class="form-control" placeholder = "Formación" requiered> <br>
-                                    Administrador:
-                                    <select name="admin" id="admin">
-                                        <option value="0"> NO </option>
-                                        <option value="1"> SI </option>
-                                    </select>
-                                    Director:
-                                    <select name="director" id="director">
-                                        <option value="0"> NO </option>
-                                        <option value="1"> SI </option>
-                                    </select>
+                                    <input type="hidden" name="admin" id="admin" value="0">
+                                    <input type="hidden" name="director" id="director" value="0">
+                                    <input type="hidden" name="id_director" id="id_director" value="<?php echo $_SESSION[id_usuario] ?>">
+
+
                                     <br><br>
                                     </div>
                                 <div class="modal-footer">

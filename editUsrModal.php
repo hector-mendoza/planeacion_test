@@ -50,6 +50,9 @@ if (isset($_POST)) {
 			                    	<option value="1"> SI </option>
 			                    </select>';
 				     }
+				     
+				        $out .= '<input type="hidden" name="id_director" id="id_director" value="0">';
+				     
 	}
 	echo $out;
 }

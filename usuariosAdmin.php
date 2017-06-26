@@ -85,7 +85,8 @@
                                     </select>
                                     <br><br>
                                     </div>
-                                <div class="modal-footer">
+                                    <input type="hidden" name="id_director" id="id_director" value="0">
+                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     <input type="submit" id="submit" class="btn btn-success" value="DAR  DE ALTA">
                                 </div>

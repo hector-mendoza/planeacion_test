@@ -1,6 +1,6 @@
 <?php
 
-mysql_connect("localhost", "root", "", "planeacion");
+$conexion=mysql_connect("localhost", "root", "", "planeacion");
 mysql_select_db("planeacion") or die(mysql_error()) ;
 $tipo = "SELECT admin FROM usuarios WHERE id_usuario = $_SESSION[id_usuario]";
 $tipo2 = "SELECT director FROM usuarios WHERE id_usuario = $_SESSION[id_usuario]";
