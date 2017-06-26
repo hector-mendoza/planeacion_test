@@ -3,6 +3,7 @@ include ("conect.php");
 extract($_POST);
 if (isset($submit)) {
     echo "hola";
+
 }
 
  ?>
@@ -20,6 +21,7 @@ if (isset($submit)) {
                 <div class="container-fluid">
                     <section class="container">
                         <div class="container-page">
+                         
                             <?php
                             extract($_GET);
                             $sql = @mysqli_query($link,"SELECT * FROM materias WHERE id_materia = '$id'");
@@ -30,26 +32,47 @@ if (isset($submit)) {
                             $data2 = mysqli_fetch_array($sql_ref_mat);
                             $sql_ref = mysqli_query($link, "SELECT * FROM referencias WHERE id_referencia = '$data2[id_referencia]' ");
                             $data_ref = mysqli_fetch_array($sql_ref);
+                            
+                            $sql_clases = mysqli_query($link, "SELECT id_materia FROM unidadescompetencia WHERE id_materia = '$id' ");
+                            $clases = mysqli_num_rows($sql_clases);
                             ?>
-                            <form action="editar_pdf.php" method="POST" accept-charset="utf-8">
+
+
+                            <form action="edit_save_pdf2.php?c= <?php echo $clases; ?> " method="POST" accept-charset="utf-8">
                                 
                                 <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12" id="firstStep">
+                                    
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
-                                    
-                                    <div class="form-group col-lg-12 col-md-8">
+                                      <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
-                                        <input type="text" name="nombrePlan" class="form-control" id="nombrePlan" value="<?php echo $data['nombrePlan'];?>" required>
+                                        <select name="carrera" id="carrera" class="selectpicker" data-live-search="true">
+                                           <option value="<?php echo $data['nombrePlan'];?>"><?php echo $data['nombrePlan'];?></option>
+                                            <?php
+                                            $tot_carr = mysqli_query($link, "SELECT * FROM carreras");
+                                            if ($tot_carr) {
+                                                while ($id_c = mysqli_fetch_row($tot_carr)) {
+                                                    echo "<option value='$id_c[0]'>$id_c[1]</option>";
+                                                }
+                                            }
+
+
+                                             ?>
+                                        </select>
                                     </div>
-                                    
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                        <label>Nombre Unidad Aprendizaje: </label>
-                                        <input type="text" name="nombreUnidad" class="form-control" id="nombreUnidad" value="<?php echo $data['nombreUnidad'];?>" required>
-                                    </div>
-                                    
-                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" required>
+
+
+
+
+                                    <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Semestre / Cuatrimestre: </label>
-                                        <input type="text" name="grado" id="grado" class="form-control" value="<?php echo $data['semestre'];?>">
+                                        <input type="number" class="form-control" name="semestre" id="semestre" value="<?php echo $data['semestre'];?>">
                                     </div>
+                                    <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
+                                        <label>Nombre Unidad Aprendizaje: </label>
+                                        <input type="text" name="unidad" class="form-control" id="unidad" value="<?php echo $data['nombreUnidad'];?>" >
+                                    </div>
+
+
                                     <!-- <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" required>
                                         <label>Núm. Clases: </label>
                                         <input type="number" name="num_clases" class="form-control" id="num_clases" placeholder="">
@@ -68,13 +91,14 @@ if (isset($submit)) {
                                     
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Fecha: </label>
-                                        <input type="date" name="fecha" class="form-control" id="fecha" value="<?php echo $data['fecha'] ?>"><br><br>
+                                        <input type="date" name="fecha" class="form-control" id="fecha" value="<?php echo $data['fecha'] ?>" ><br><br>                            
                                     </div>
-                                    <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+
+                                        <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <input type="radio" id="in-category-20" name="category" value="LISTO"> <b>LISTO</b>
                                         <br><br>
                                         <button type="button" class="btn btn-info btn-lg" id="submit" onclick="$('#firstStep').hide(); $('#secondStep').show()" disabled>SEGUIR</button>
-                                        <script>
+                                        <!-- <script>
                                         $("input[type='text'], input[type='number'], input[type='date']").on("keyup", function(){
                                         if($(this).val() != "" && $("input[type='date']").val() != "" && $("input[name='category']").is(":checked") == true){
                                         $("button[id='submit']").removeAttr("disabled");
@@ -85,19 +109,21 @@ if (isset($submit)) {
                                         $("button[id='submit']").removeAttr("disabled");
                                         }
                                         });
-                                        </script>
-                                    </div> -->
+                                        </script> -->
+
                                 </div>
+                                </div>
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="secondStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">II. PROPÓSITO:</h3>
-                                        <textarea class="form-control" name="proposito" rows="5" cols="25" ><?php echo $data['proposito'];?></textarea><br><br>
-                                        <!-- <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b> -->
+                                        <textarea class="form-control" name="proposito" placeholder="Escribe el propósito..." rows="5" cols="25" ><?php echo $data['proposito'];?></textarea><br><br>
+                                        <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b>
                                     </div>
-                                    <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#secondStep').hide(); $('#firstStep').show()" >ATRAS</button>
-                                        <button type="button" id="submit2" class="btn btn-info btn-lg" onclick="$('#secondStep').hide(); $('#temario').show()" disabled>SEGUIR</button>
-                                        <script>
+                                        <button type="button" id="submit2" class="btn btn-info btn-lg" onclick="$('#secondStep').hide(); $('#thirdStep').show()" disabled>SEGUIR</button>
+                                        <!-- <script>
                                         $("textarea").on("keyup", function(){
                                         if($(this).val() != "" && $("textarea").val() != "" && $("input[name='category2']").is(":checked") == true){
                                         $("button[id='submit2']").removeAttr("disabled");
@@ -108,9 +134,11 @@ if (isset($submit)) {
                                         $("button[id='submit2']").removeAttr("disabled");
                                         }
                                         });
-                                        </script>
-                                    </div> -->
+                                        </script> -->
+                                    </div>
                                 </div>
+
+
                                 <!-- <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="temario" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">PEGA TU TEMARIO:</h3>
@@ -135,17 +163,20 @@ if (isset($submit)) {
                                     </div>
                                 </div> -->
                                 
+
+
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="thirdStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">III. COMPETENCIAS GENÉRICAS Y ESPECÍFICAS DE LA UNIDAD APRENDIZAJE:</h3>
-                                        <textarea class="form-control" name="competenciasGen" rows="5" cols="25" ><?php echo $data['competenciasGen'];?></textarea>
+                                        <textarea class="form-control" name="genericas" placeholder="GENÉRICAS" rows="5" cols="25" ><?php echo $data['competenciasGen'];?></textarea>
                                     </div>
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                        <textarea class="form-control" name="competenciasEsp" rows="5" cols="25" ><?php echo $data['competenciasEsp'];?></textarea><br><br>
-                                        <!-- <input type="radio" id="in-category-20" name="category3" value="LISTO"> <b>LISTO</b> -->
+                                        <textarea class="form-control" name="especificas" placeholder="ESPECÍFICAS" rows="5" cols="25" ><?php echo $data['competenciasEsp'];?></textarea><br><br>
+                                        <input type="radio" id="in-category-20" name="category3" value="LISTO"> <b>LISTO</b>
                                     </div>
-                                    <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
-                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#thirdStep').hide(); $('#temario').show()" >ATRAS</button>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#thirdStep').hide(); $('#secondStep').show()" >ATRAS</button>
                                         <button type="button" class="btn btn-info btn-lg" id="submit3" onclick="$('#thirdStep').hide(); $('#fourthStep').show()" disabled>SEGUIR</button>
                                         <script>
                                         $("textarea").on("keyup", function(){
@@ -159,27 +190,26 @@ if (isset($submit)) {
                                         }
                                         });
                                         </script>
-                                    </div> -->
+                                    </div>
                                 </div>
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:;"">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IV. FECHAS DE EVALUACIONES SUMATIVAS:</h3>
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                                        <label>1ER Reporte:</label>
-                                        <input type="date" name="primer_rep" class="form-control" id="1reporte" value="<?php echo $data['primeraEvaluacion'];?>" >
+                                        <label>1ER Reporte:</label><input type="date" name="primer_rep" class="form-control" id="1reporte"  value="<?php echo $data['primeraEvaluacion'];?>">
                                         <br>
-                                        <label>2DO Reporte:</label>
-                                        <input type="date" name="seg_rep" class="form-control" id="2reporte" value="<?php echo $data['segundaEvaluacion'];?>" >
+                                        <label>2DO Reporte:</label><input type="date" name="seg_rep" class="form-control" id="2reporte"  value="<?php echo $data['segundaEvaluacion'];?>" >
                                         <br>
-                                        <label>3ER Reporte (FINAL):</label>
-                                        <input type="date" name="tercer_rep" class="form-control" id="3reporte" value="<?php echo $data['terceraEvaluacion'];?>" ><br><br>
-                                        <!-- <input type="radio" id="in-category-20" name="category4" value="LISTO"> <b>LISTO</b> -->
+                                        <label>3ER Reporte (FINAL):</label><input type="date" name="tercer_rep" class="form-control" id="3reporte" value="<?php echo $data['terceraEvaluacion'];?>"><br><br>
+
+                                        <input type="radio" id="in-category-20" name="category4" value="LISTO"> <b>LISTO</b>
                                     </div>
-                                    <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#fourthStep').hide(); $('#thirdStep').show()" >ATRAS</button>
                                         <button type="button" class="btn btn-info btn-lg" id="submit4" onclick="$('#fourthStep').hide(); $('#fifthStep').show()" disabled>SEGUIR</button>
-                                        <script>
+                                        <!-- <script>
                                         $("input[type='date']").on("keyup", function(){
                                         if($(this).val() != "" && $("input[type='date']").val() != "" && $("input[name='category4']").is(":checked") == true){
                                         $("button[id='submit4']").removeAttr("disabled");
@@ -190,9 +220,13 @@ if (isset($submit)) {
                                         $("button[id='submit4']").removeAttr("disabled");
                                         }
                                         });
-                                        </script>
-                                    </div> -->
-                                </div>
+                                        </script> -->
+                                    </div>
+
+
+
+           </div>
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fifthStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">V. HORAS Y CALENDARIO DE SESIONES:</h3>
@@ -217,6 +251,13 @@ if (isset($submit)) {
                                         <input type="number" value="<?php echo $data['horasPracInd'];?>" name="indep_pract" class="form-control" id="indep_pract" value="" ><br><br>
                                         <!-- <input type="radio" id="in-category-20" name="category5" value="LISTO"> <b>LISTO</b> -->
                                     </div>
+
+                                         <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="radio" id="in-category-20" name="category5" value="LISTO"> <b>LISTO</b>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#fifthStep').hide(); $('#fourthStep').show()" >ATRAS</button>
+                                        <button type="button" class="btn btn-info btn-lg" id="submit5" onclick="$('#fifthStep').hide(); $('#sixthStep').show()" disabled>SEGUIR</button>
                                     <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#fifthStep').hide(); $('#fourthStep').show()" >ATRAS</button>
                                         <button type="button" class="btn btn-info btn-lg" id="submit5" onclick="$('#fifthStep').hide(); $('#sixthStep').show()" disabled>SEGUIR</button>
@@ -234,6 +275,8 @@ if (isset($submit)) {
                                         </script>
                                     </div> -->
                                 </div>
+                                </div>
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="sixthStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">VI. IDENTIFICACIÓN DEL GRUPO:</h3>
@@ -244,17 +287,18 @@ if (isset($submit)) {
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Salón:</label>
-                                        <input type="text" value="<?php echo $data['salon'];?>" name="salon" class="form-control" id="salon" value="" ><br><br>
+                                        <input type="text" value="<?php echo $data['salon'];?>" name="salon" class="form-control" id="salon"  ><br><br>
                                         <!-- <input type="radio" id="in-category-20" name="category6" value="LISTO"> <b>LISTO</b> -->
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>No. Alumnos:</label>
-                                        <input type="number" value="<?php echo $data['numAlumnos'];?>" name="total_alumnos" class="form-control" id="total_alumnos" value="" >
+                                        <input type="number" value="<?php echo $data['numAlumnos'];?>" name="total_alumnos" class="form-control" id="total_alumnos" >
                                     </div>
-                                    <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+
+                                        <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#sixthStep').hide(); $('#fifthStep').show()" >ATRAS</button>
                                         <button type="button" class="btn btn-info btn-lg" id="submit6" onclick="$('#sixthStep').hide(); $('#sevenStep').show()">SEGUIR</button>
-                                        <script>
+                                        <!-- <script>
                                         $("input[type='text'], input[type='number']").on("keyup", function(){
                                         if($(this).val() != "" && $("input[type='number']").val() != "" && $("input[name='category6']").is(":checked") == true){
                                         $("button[id='submit6']").removeAttr("disabled");
@@ -265,16 +309,19 @@ if (isset($submit)) {
                                         $("button[id='submit6']").removeAttr("disabled");
                                         }
                                         });
-                                        </script>
-                                    </div> -->
+                                        </script> -->
+                                    </div>
+
                                 </div>
+                                
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="sevenStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
                                         <h3 class="dark-grey">VII.UNIDADES DE COMPETENCIA:</h3>
-                                        <div style="overflow-y: scroll; height:400px; width: 100%">
+                                        <div style="overflow-y: scroll; height:600px; width: 100%">
                                             <table id="unidades" class="table table-hover table-responsive table-bordered table-condensed">
                                                 <tr class="info">
-                                                    <th>Fecha </th>
+                                                    <th>Fecha</th>
                                                     <th>Tema</th>
                                                     <th>Aprendizajes esperados</th>
                                                     <th>Estrategias de aprendizaje</th>
@@ -284,15 +331,15 @@ if (isset($submit)) {
                                                     <th>Instrumentos de evaluación</th>
                                                     <th>Criterios de evaluación y ponderación</th>
                                                 </tr>
+                                                <?php
+                                                for ($i=0; $i < $clases; $i++) {
+                                                ?>
                                                 <tr>
+                                                    <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value="<?php echo $data1['fecha[$i]'];?>"></td>
+                                                    <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"></textarea></td>
+                                                    <td><textarea id="3" name="ap_esp<?php echo $i; ?>"></textarea></td>
                                                     <td>
-                                                        <input type="date" name="fechaUnidades" value="<?php echo $data1['fecha'];?>">
-                                                    </td>
-                                                    <td><textarea id="2" name="tema" placeholder="<?php echo $data1['tema'];?>"></textarea></td>
-                                                    <td><textarea id="3" name="aprenEsp" placeholder="<?php echo $data1['aprenEsp'];?>"></textarea></td>
-                                                    <td>
-                                                        
-                                                        INICIO: <select class="selectpicker" data-live-search="true" name="inicio" multiple>
+                                                        INICIO: <select class="selectpicker" data-live-search="true" name="inicio<?php echo $i; ?>[]">
                                                             <optgroup label="INICIO">
                                                                 <option value="Activacion de conocimientos previos">Activación de conocimientos previos</option>
                                                                 <option value="Anecdota">Anécdota</option>
@@ -300,7 +347,7 @@ if (isset($submit)) {
                                                                 <option value="Presentacion del Tema">Presentación del Tema</option>
                                                             </optgroup>
                                                         </select>
-                                                        DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap" multiple>
+                                                        DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap<?php echo $i; ?>[]">
                                                             <optgroup label="TABLAS ACADÉMICAS">
                                                                 <option value="Matriz de inducción">1 Matriz de inducción</option>
                                                                 <option value="PNI (Positivo, Negativo, Interesante)">1 PNI (Positivo, Negativo, Interesante)</option>
@@ -367,7 +414,7 @@ if (isset($submit)) {
                                                                 <option value="Cómic">Cómic</option>
                                                             </optgroup>
                                                             <optgroup label="MULTIMEDIA">
-                                                                <option value="Pelìculas">Pelìculas</option>
+                                                                <option value="Películas">Películas</option>
                                                                 <option value="Reportajes">Reportajes</option>
                                                                 <option value="Audios">Audios</option>
                                                                 <option value="Documentales">Documentales</option>
@@ -420,7 +467,7 @@ if (isset($submit)) {
                                                                 <option value="Solucion de problemas">Solución de problemas</option>
                                                             </optgroup>
                                                         </select>
-                                                        CIERRE: <select class="selectpicker" name="cierre" data-live-search="true" multiple>
+                                                        CIERRE: <select class="selectpicker" name="cierre<?php echo $i; ?>[]" data-live-search="true">
                                                             <option value="Resumen">Resumen</option>
                                                             <option value="Conclusiones">Conclusiones</option>
                                                             <option value="Liga con el tema siguiente">Liga con el tema siguiente</option>
@@ -429,64 +476,37 @@ if (isset($submit)) {
                                                         </select>
                                                     </td>
                                                     <td width="100">
-                                                        <!-- <label for="marcadores">Marcadores</label><input type="checkbox" class="form-control" name="marcadores"><br>
-                                                        <label for="pintarron">Pintarrón</label><input type="checkbox" class="form-control" name="pintarron"><br>
-                                                        <label for="pintarron">Proyector</label><input type="checkbox" class="form-control" name="proyector"><br>
-                                                        <label for="computadora">Computadora</label><input type="checkbox" class="form-control" name="computadora"><br>
-                                                        <label for="diapositivas">Diapositivas</label><input type="checkbox" name="diapositivas">
-                                                        <label for="documentos_texto">Texto</label><input type="checkbox" name="documentos_texto">
-                                                        <label for="videos">Videos</label><input type="checkbox" name="videos">
-                                                        <label for="instrucciones">Instrucciones</label><input type="checkbox" name="instrucciones"> -->
+                                                        <select name="material<?php echo $i; ?>[]" class="selectpicker" data-live-search="true" multiple>
+                                                            <option value="Marcadores">Marcadores</option>
+                                                            <option value="Pintarron">Pintarron</option>
+                                                            <option value="Proyector">Proyector</option>
+                                                            <option value="Computadora">Computadora</option>
+                                                            <option value="Diapositivas">Diapositivas</option>
+                                                            <option value="Videos">Videos</option>
+                                                            <option value="Instrucciones">Instrucciones</option>
+                                                            <option value="Internet">Internet</option>
+                                                            <option value="Bocinas">Bocinas</option>
+                                                            <option value="Cables">Cables</option>
+                                                        </select>
+
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Marcadores</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Pintarrón</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Proyector</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Computadora</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Diapositivas</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Textos</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Videos</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Instrucciones</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Internet</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Bocinas</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" value="">Cables</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>Otros<input type="text" value=""></label>
+                                                            <label>Otros<input type="text" class="form-control" name="otros<?php echo $i; ?>" placeholder="Ingresa otro"></label>
                                                         </div>
                                                     </td>
-                                                    <td><textarea id="6" name="evidencias" placeholder="<?php echo $data1['evidencias'];?>"></textarea></td>
-                                                    <td><select class="selectpicker" data-live-search="true" name="tipo_eval" multiple>
+                                                    <td><textarea id="evid_ap" name="evid_ap<?php echo $i; ?>"></textarea></td>
+                                                    <td><select class="selectpicker" data-live-search="true" name="tipo_eval<?php echo $i; ?>">
                                                         <?php
                                                         include('conect.php');
+                                                        mysql_query("SET NAMES 'utf8'", $link);
                                                         $inst = mysqli_query($link,"SELECT * FROM tiposevaluacion");
                                                         while ($c = mysqli_fetch_row($inst)) {
                                                         echo "<option value='$c[0]'>$c[1]</option>";
                                                         }
                                                         ?>
-                                                    </select></textarea>
+                                                    </select>
                                                 </td>
                                                 <td>
-                                                    <select class="selectpicker" data-live-search="true" name="inst_eval" multiple>
+                                                    <select class="selectpicker" data-live-search="true" name="inst_eval<?php echo $i; ?>">
                                                         <?php
                                                         include('conect.php');
                                                         $tip_eval = mysqli_query($link,"SELECT * FROM instrumentosevaluacion");
@@ -496,107 +516,176 @@ if (isset($submit)) {
                                                         ?>
                                                     </select>
                                                 </td>
-                                                <td><textarea id="9" name="criterio" placeholder="<?php echo $data1['ponderacion'];?>"></textarea></td>
+                                                <td><textarea id="9" name="criterio<?php echo $i; ?>"></textarea></td>
+                                                <?php
+                                                }
+                                                ?>
                                             </tr>
                                         </table><br><br>
-                                        
                                     </div>
                                 </div>
                                 <!-- <center><input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b></center> -->
                                 <br><br>
-                                <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#sixthStep').show()" >ATRAS</button>
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#eightStep').show()">SEGUIR</button>
-                                </div> -->
-                            </div>
-                            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
-                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
-                                    <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
-                                    <input class="form-control" type="text" name="basicas" value="<?php echo $data_ref['isbn']; ?>"><br>
-                                    <!-- <a href="#agregarRef" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br> 
-                                    <input type="radio" id="in-category-20" name="category8" value="LISTO"> <b>LISTO</b>-->
                                 </div>
-                                <!-- <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                            </div>
+                            
+                            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
+                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" id="divAgrRef1">
+                                    <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
+                                    <h5>*Mediante el <b>"ISBN / NOMBRE"</b> busca la referencia.</h5>
+                                    <select class="selectpicker" data-live-search="true" name="ref_bas[]" id="ref_bas">
+                                        <optgroup label="REFERENCIAS (ISBN, AUTOR, FECHA, TÍTULO, EDITORIAL)">
+                                            <?php
+                                            include('conect.php');
+                                            $ref = mysqli_query($link,"SELECT * FROM referencias");
+                                            while ($r = mysqli_fetch_row($ref)) {
+                                                echo "<option value='$r[0]'>$r[1], $r[2], $r[3], $r[4], $r[5]</option>";
+                                            }
+                                            ?>
+                                        </optgroup>
+                                    </select>
+                                    <br><br>
+                                    <a href="#agregarRef" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
+                                    <!-- <input type="radio" id="in-category-20" name="category8" value="LISTO"> <b>LISTO</b> -->
+                                </div>
+                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#eightStep').hide(); $('#sevenStep').show()" >ATRAS</button>
                                     <button type="button" class="btn btn-info btn-lg" id="submit8" onclick="$('#eightStep').hide(); $('#nineStep').show()" disabled>SEGUIR</button>
-                                    
-                                    <script>
-                                    $("textarea").on("keyup", function(){
-                                    if($(this).val() != "" && $("textarea").val() != "" && $("input[name='category8']").is(":checked") == true){
-                                    $("button[id='submit8']").removeAttr("disabled");
-                                    }
-                                    });
-                                    $("input[name='category8']").on("change", function(){
-                                    if($(this).val() != "" && $("textarea").val() != "" && $("input[name='category8']").is(":checked") == true){
-                                    $("button[id='submit8']").removeAttr("disabled");
-                                    }
-                                    });
-                                    </script>
-                                </div> -->
-                                <div id="agregarRef" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Agregar Referencia</h4>
-                                            </div>
-                                            <div class="modal-body">
+
+                                </div>
+                          
+                            </div>
+
+                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
+                                    <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
+                                        <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
+                                        <select class="selectpicker" data-live-search="true" name="ref_com" id="ref_com">
+                                        <optgroup label="REFERENCIAS (ISBN, AUTOR, FECHA, TÍTULO, EDITORIAL)">
+                                            <?php
+                                                include('conect.php');
+                                                $ref = mysqli_query($link,"SELECT * FROM referencias");
+                                                while ($r = mysqli_fetch_row($ref)) {
+                                                    echo "<option value='$r[0]'>$r[1], $r[2], $r[3], $r[4], $r[5]</option>";
+                                                }
+                                            ?>
+                                            </optgroup>
+                                        </select>
+                                        <br><br>
+                                        <a href="#agregarRefComp" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br>
+                                        <!-- <input type="radio" id="in-category-20" name="category2" value="LISTO"> <b>LISTO</b> -->
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
+                                        <button type="button" class="btn btn-info btn-lg" onclick="$('#nineStep').hide(); $('#eightStep').show()" >ATRAS</button>
+                                        <input type="submit" name="submit" class="btn btn-danger btn-lg" value="TERMINAR">
+                                    </div>
+                                </div>
+
+                            </form>
+
+                       <div id="agregarRef" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Agregar Referencia</h4>
+                                        </div>
+                                        <form id="agregarRefForm">
+                                            <div class="modal-body" id="modalForm">
                                                 <p>Formulario para agregar referencia.</p>
                                                 <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
-                                                <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRef" value="" ><br>
-                                                <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRef" value="" ><br>
+                                                <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRef" value="" required><br>
+                                                <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRef" value="" required><br>
                                                 Fecha:
-                                                <input type="date" name="fechaRef"><br><br>
-                                                <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRef" value="" ><br>
-                                                <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRef" value="" ><br>
+                                                <input type="date" id="fechaRef" required><br><br>
+                                                <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRef" value="" required><br>
+                                                <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRef" value="" required><br>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
-                                            </div>
-                                        </div>
+                                                <button type="button" class="btn btn-primary" id="agregarRefBtt" onclick="agrAjax()">Agregar</button>
+                                           </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
-                                <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
-                                    <h3 class="dark-grey">IX. REFERENCIAS COMPLEMENTARIAS:</h3>
-                                    <textarea class="form-control" name="complem" placeholder="Referencias Complementarias" rows="5" cols="25" ></textarea><br>
-                                    <!-- <a href="#agregarRefComp" class="btn btn-warning" data-toggle="modal">+ AGREGAR</a><br><br> -->
-                                    <!-- <input type="radio" id="in-category-20" name="category2" value="LISTO">  <b>LISTO</b>-->
+
+                            <div id="agregarRefComp" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Agregar Referencia Complementaria</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Formulario para agregar referencia complementaria.</p>
+                                            <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
+                                            <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbnRefComp" value="" ><br>
+                                            <input type="text" placeholder="Autor" name="autor" class="form-control" id="autorRefComp" value="" ><br>
+                                            Fecha:
+                                            <input type="date" id="fechaRefComp"><br><br>
+                                            <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="tituloRefComp" value="" ><br>
+                                            <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorialRefComp" value="" ><br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary" id="agregarRefBtt" onclick="agrAjaxComp()">Agregar</button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
-                                    <!-- <button type="button" class="btn btn-info btn-lg" onclick="$('#nineStep').hide(); $('#eightStep').show()" >ATRAS</button> -->
-                                    <input type="submit" name="submit" class="btn btn-danger btn-lg" value="TERMINAR">
-                                </div>
-                               <!--  <div id="agregarRefComp" class="modal fade">
-                                   <div class="modal-dialog">
-                                       <div class="modal-content">
-                                           <div class="modal-header">
-                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                               <h4 class="modal-title">Agregar Referencia Complementaria</h4>
-                                           </div>
-                                           
-                                           <div class="modal-body">
-                                               <form id="refcompl" method="POST" >
-                                                   <p>Formulario para agregar referencia complementaria.</p>
-                                                   <p class="text-warning"><small>Asegurese de buscar primero la referencia en las ya existentes.</small></p>
-                                                   <input type="text" placeholder="ISBN" name="isbn" class="form-control" id="isbn" value="" ><br>
-                                                   <input type="text" placeholder="Autor" name="autor" class="form-control" id="autor" value="" ><br>
-                                                   Fecha:
-                                                   <input type="date" name="fecha" id="fecha"><br><br>
-                                                   <input type="text" placeholder="Titulo" name="titulo" class="form-control" id="titulo" value="" ><br>
-                                                   <input type="text" placeholder="Editorial" name="editorial" class="form-control" id="editorial" value="" ><br>
-                                               </div>
-                                               <div class="modal-footer">
-                                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                   <button id="guardar1" class="btn btn-primary" ><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button>
-                                               </div>
-                                           </div>
-                                       </form>
-                                   </div>
-                               </div> -->
                             </div>
+                                     
+                            <script type="text/javascript">
+                                            function agrAjax(){
+                                                var isbn = $('#isbnRef').val();
+                                                var autor = $('#autorRef').val();
+                                                var fecha = $('#fechaRef').val();
+                                                var titulo = $('#tituloRef').val();
+                                                var editorial = $('#editorialRef').val();
+
+                                                if(isbn == '' || autor == '' || fecha == '' || titulo == '' || editorial == ''){
+                                                    alert("Favor de llenar todos los campos");
+                                                }
+                                                else{
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "agregarRef.php",
+                                                        data: {isbn:isbn,autor:autor,fecha:fecha,titulo:titulo,editorial:editorial},
+                                                        cache: true,
+                                                        success: function(html){
+                                                            alert(html);
+                                                        }  
+                                                    });
+                                                    $('#agregarRef').modal('hide');
+                                                }
+                                            };
+                                            function agrAjaxComp(){
+                                                var isbn = $('#isbnRefComp').val();
+                                                var autor = $('#autorRefComp').val();
+                                                var fecha = $('#fechaRefComp').val();
+                                                var titulo = $('#tituloRefComp').val();
+                                                var editorial = $('#editorialRefComp').val();
+
+                                                if(isbn == '' || autor == '' || fecha == '' || titulo == '' || editorial == ''){
+                                                    alert("Favor de llenar todos los campos");
+                                                }
+                                                else{
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "agregarRef.php",
+                                                        data: {isbn:isbn,autor:autor,fecha:fecha,titulo:titulo,editorial:editorial},
+                                                        cache: true,
+                                                        success: function(html){
+                                                            alert(html);
+                                                        }  
+                                                    });
+                                                    $('#agregarRefComp').modal('hide');
+                                                }
+                                            };
+                                        </script>
                         </section>
                     </div>
                     <!-- /.container-fluid -->
