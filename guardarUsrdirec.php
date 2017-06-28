@@ -13,7 +13,13 @@
 
 		if (mysqli_query($link, $sql)){
 			header("Location: docentes.php");
+		} else {
+
+			header("Location: index.php");
+
 		}
+
+
 	}
 	else{
 		$sql = "INSERT INTO usuarios VALUES('','$usuario','$nombre','$apellido', '$pass', '$correo', '$grado_academ', '$formacion',

@@ -17,7 +17,8 @@
 
                         $sql = mysqli_query($link, "SELECT * FROM usuarios where  admin = '0' and director = '0' and id_director = $_SESSION[id_usuario]");
                         ?>
-                        <a href="#agregarUsr" class="btn btn-success" data-toggle="modal">+ AGREGAR</a><br><br>
+                      
+                        <a href="agregar_usudoc.php" class="btn btn-success" >+ AGREGAR</a><br><br>
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                             <table class="table table-hover table-bordered table-responsive">
                                 <thead>
@@ -51,70 +52,4 @@
     </body>
 </html>
                 
-                <div id="agregarUsr" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Agregar Usuario</h4>
-                            </div>
-                            <form method="POST" id="insert_usr" action="guardarUsr.php" accept-charset="utf-8">
-                                <div class="modal-body">
-                                    Nombre: <input type="text" name="nombre" id="nombre" class="form-control" placeholder = "Nombre" requiered>
-                                    Apellido: <input type="text" name="apellido" id="apellido" class="form-control" placeholder = "Apellido" requiered>
-                                    Usuario: <input type="text" name="usuario" id="usuario" class="form-control" placeholder = "Usuario" requiered>
-                                    Contraseña: <input type="password" name="pass" id="pass" class="form-control" placeholder = "Contraseña" requiered>
-                                    Correo: <input type="text" name="correo" id="correo" class="form-control" placeholder = "Correo" requiered>
-                                    Grado académico: <input type="text" name="grado_academ" id="grado_academ" class="form-control" placeholder = "Grado Académico" requiered>
-                                    Formación: <input type="text" name="formacion" id="formacion" class="form-control" placeholder = "Formación" requiered> <br>
-                                    <input type="hidden" name="admin" id="admin" value="0">
-                                    <input type="hidden" name="director" id="director" value="0">
-                                    <input type="hidden" name="id_director" id="id_director" value="<?php echo $_SESSION[id_usuario] ?>">
-
-
-                                    <br><br>
-                                    </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <input type="submit" id="submit" class="btn btn-success" value="DAR  DE ALTA">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="dataModal" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Editar Usuario</h4>
-                            </div>
-                            <form method="POST" id="insert_usr" action="guardarUsr.php" accept-charset="utf-8">
-                                <div class="modal-body" id ="editUsr_detail">
-                                    
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <input type="submit" id="submit" class="btn btn-success" value="GUARDAR">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <script>
-                        $('.edit_data').click(function () {
-                            var usrId = $(this).attr("id");
-                            $.ajax({
-                                url: "editUsrModal.php",
-                                method: "post",
-                                data: {usrId:usrId},
-                                success: function (data) {
-                                    $('#editUsr_detail').html(data);
-                                    $('#dataModal').modal("show");
-                                }
-                            });
-                        });
-                     
-                </script>
+              

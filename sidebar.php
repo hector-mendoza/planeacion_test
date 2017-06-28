@@ -120,6 +120,10 @@ $data2 = mysql_fetch_assoc($res2);
                 <li>
                     <a href="materias.php"> <i class="glyphicon glyphicon-eye-open"></i> Ver materias</a>
                 </li>
+
+                    <li>
+                    <a href="materiasdocentes.php"> <i class="glyphicon glyphicon-eye-open"></i> Ver materias (Docentes)</a>
+                </li>
             </ul>
         </li>
 
