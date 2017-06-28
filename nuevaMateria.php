@@ -31,9 +31,16 @@ if (isset($_POST['clases'])) {
                                     
                                     <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
-                                        <select name="carrera" id="carrera" class="selectpicker" data-live-search="true">
+                                        <select name="carrera" id="carrera" class="selectCarr selectpicker"  data-live-search="true">
+                                         <option style="display:none" disabled selected value> -- Seleccione Plan -- </option>
                                             <?php
-                                            $tot_carr = mysqli_query($link, "SELECT * FROM carreras");
+                                            $id_usr = $_SESSION['id_usuario'];
+                                            $tot_carr = mysqli_query($link, "SELECT c.* FROM carreras c
+                                                                            INNER JOIN direccionesxdocente dxc
+                                                                            ON c.id_direccion = dxc.id_direccion
+                                                                            INNER JOIN usuarios u 
+                                                                            on u.id_usuario = dxc.id_usuario
+                                                                            WHERE u.id_usuario = $id_usr;");
                                             if ($tot_carr) {
                                                 while ($id_c = mysqli_fetch_row($tot_carr)) {
                                                     echo "<option value='$id_c[0]'>$id_c[1]</option>";
@@ -44,12 +51,46 @@ if (isset($_POST['clases'])) {
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Semestre / Cuatrimestre: </label>
-                                        <input type="number" class="form-control" name="semestre" id="semestre" placeholder="Semestre">
+                                        <select name="semestre" id="semestre" class="selectSem" data-live-search="true">
+                                            <option style="display:none" disabled selected value> -- Seleccione Semestre -- </option>
+                                        </select>
                                     </div>
+
+
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Nombre Unidad Aprendizaje: </label>
-                                        <input type="text" name="unidad" class="form-control" id="unidad" placeholder="Nombre de la Materia" >
+                                        <select name="unidad" id="unidad" data-live-search="true">
+                                            <option style="display:none" disabled selected value> -- Seleccione Materia -- </option>
+                                        </select>
                                     </div>
+
+                                    <script type="text/javascript">
+                                        $(".selectCarr").change(function(){
+                                                        var id_carrera = $(this).val();                 
+                                                        $.ajax({
+                                                            type:'POST',
+                                                            url:'cargarSemestres.php',
+                                                            data:{id_carrera:id_carrera},
+                                                            success:function(result){
+                                                               $("#semestre").html(result);
+                                                            }
+                                                        });
+                                        });
+
+                                        $(".selectSem").change(function(){
+                                                        var id_carrera = $("#carrera").val(); 
+                                                        var semestre = $(this).val();                
+                                                        $.ajax({
+                                                            type:'POST',
+                                                            url:'cargarMaterias.php',
+                                                            data:{id_carrera:id_carrera,semestre:semestre},
+                                                            success:function(result){
+                                                               $("#unidad").html(result);
+                                                            }
+                                                        });
+                                        });
+
+                                    </script>
                                     <!-- <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" required>
                                         <label>Núm. Clases: </label>
                                         <input type="number" name="clases" class="form-control" id="num_clases" placeholder="Número de Clases">
