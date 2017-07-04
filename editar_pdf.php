@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ("conect.php");
 extract($_POST);
 if (isset($submit)) {
@@ -21,7 +21,7 @@ if (isset($submit)) {
                 <div class="container-fluid">
                     <section class="container">
                         <div class="container-page">
-                         
+
                             <?php
                             extract($_GET);
                             $sql = @mysqli_query($link,"SELECT * FROM materias WHERE id_materia = '$id'");
@@ -32,30 +32,32 @@ if (isset($submit)) {
                             $data2 = mysqli_fetch_array($sql_ref_mat);
                             $sql_ref = mysqli_query($link, "SELECT * FROM referencias WHERE id_referencia = '$data2[id_referencia]' ");
                             $data_ref = mysqli_fetch_array($sql_ref);
-                            
+
                             $sql_clases = mysqli_query($link, "SELECT id_materia FROM unidadescompetencia WHERE id_materia = '$id' ");
                             $clases = mysqli_num_rows($sql_clases);
+
+                            $unidad = mysqli_query($link, "SELECT * FROM unidadescompetencia WHERE id_materia = '$id' ");
+                            $sql_c = mysqli_query($link, "SELECT * FROM carreras WHERE id_carrera = '$data[id_carrera]' ");
+                            $carr = mysqli_fetch_object($sql_c);
                             ?>
 
 
-                            <form action="edit_save_pdf2.php?c= <?php echo $clases; ?> " method="POST" accept-charset="utf-8">
-                                
+                            <form action="edit_save_pdf2.php?id= <?php echo $id; ?> &c= <?php echo $clases; ?> " method="POST" accept-charset="utf-8">
+
                                 <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12" id="firstStep">
-                                    
+
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
                                       <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
                                         <select name="carrera" id="carrera" class="selectpicker" data-live-search="true">
-                                           <option value="<?php echo $data['nombrePlan'];?>"><?php echo $data['nombrePlan'];?></option>
+                                           <option value="<?php echo $carr->id_carrera; ?>"><?php echo $carr->carrera; ?></option>
                                             <?php
-                                            $tot_carr = mysqli_query($link, "SELECT * FROM carreras");
+                                            $tot_carr = mysqli_query($link, "SELECT * FROM carreras WHERE id_carrera NOT IN ($carr->id_carrera)");
                                             if ($tot_carr) {
                                                 while ($id_c = mysqli_fetch_row($tot_carr)) {
                                                     echo "<option value='$id_c[0]'>$id_c[1]</option>";
                                                 }
                                             }
-
-
                                              ?>
                                         </select>
                                     </div>
@@ -77,7 +79,7 @@ if (isset($submit)) {
                                         <label>Núm. Clases: </label>
                                         <input type="number" name="num_clases" class="form-control" id="num_clases" placeholder="">
                                     </div> -->
-                                    
+
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12" required>
                                         <label>Ciclo: </label>
                                         <select name="ciclo" class="form-control">
@@ -88,10 +90,10 @@ if (isset($submit)) {
                                             <option value="5">2019 - 2020</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Fecha: </label>
-                                        <input type="date" name="fecha" class="form-control" id="fecha" value="<?php echo $data['fecha'] ?>" ><br><br>                            
+                                        <input type="date" name="fecha" class="form-control" id="fecha" value="<?php echo $data['fecha'] ?>" ><br><br>
                                     </div>
 
                                         <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
@@ -162,7 +164,7 @@ if (isset($submit)) {
                                         </script>
                                     </div>
                                 </div> -->
-                                
+
 
 
 
@@ -222,10 +224,7 @@ if (isset($submit)) {
                                         });
                                         </script> -->
                                     </div>
-
-
-
-           </div>
+                               </div>
 
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fifthStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
@@ -235,7 +234,7 @@ if (isset($submit)) {
                                         <label>Horas Totales de UNIDAD DE APRENDIZAJE:</label>
                                         <input type="number" value="<?php echo $data['horasUnidad'];?>" name="totalhoras" class="form-control" id="totalhoras">
                                     </div>
-                                    
+
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Horas Totales CON DOCENTE:</label>
                                         <input type="number" value="<?php echo $data['horasTeoDoc'];?>" name="docenteteoricas" class="form-control" id="totalhoras" value="" >
@@ -313,7 +312,7 @@ if (isset($submit)) {
                                     </div>
 
                                 </div>
-                                
+
 
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="sevenStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" >
@@ -332,195 +331,199 @@ if (isset($submit)) {
                                                     <th>Criterios de evaluación y ponderación</th>
                                                 </tr>
                                                 <?php
-                                                for ($i=0; $i < $clases; $i++) {
-                                                ?>
-                                                <tr>
-                                                    <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value="<?php echo $data1[fecha[$i]];?>"></td>
-                                                    <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"><?php echo $data1['tema'.$i]; ?></textarea></td>
-                                                    <td><textarea id="3" name="ap_esp<?php echo $i; ?>"></textarea></td>
-                                                    <td>
-                                                        INICIO: <select class="selectpicker" data-live-search="true" name="inicio<?php echo $i; ?>[]">
-                                                            <optgroup label="INICIO">
-                                                                <option value="Activacion de conocimientos previos">Activación de conocimientos previos</option>
-                                                                <option value="Anecdota">Anécdota</option>
-                                                                <option value="Liga con el tema anterior y/o posterior">Liga con el tema anterior y/o posterior</option>
-                                                                <option value="Presentacion del Tema">Presentación del Tema</option>
-                                                            </optgroup>
-                                                        </select>
-                                                        DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap<?php echo $i; ?>[]">
-                                                            <optgroup label="TABLAS ACADÉMICAS">
-                                                                <option value="Matriz de inducción">1 Matriz de inducción</option>
-                                                                <option value="PNI (Positivo, Negativo, Interesante)">1 PNI (Positivo, Negativo, Interesante)</option>
-                                                                <option value=">QQQ (veo, no veo, infiero)">1 QQQ (veo, no veo, infiero)</option>
-                                                                <option value="RA-P-RP (resp-preg-resp)">1 RA-P-RP (resp-preg-resp)</option>
-                                                                <option value="SQA (Qué se, quiero saber, Aprendí)">1 SQA (Qué sé, quiero saber, Aprendí)</option>
-                                                            </optgroup>
-                                                            <optgroup label="TEXTOS ACADÉMICOS">
-                                                                <option value="Resumen">2 Resumen</option>
-                                                                <option value="Síntesis">2 Síntesis</option>
-                                                                <option value="Paráfrasis">2 Paráfrasis</option>
-                                                                <option value="Reporte">2 Reporte</option>
-                                                                <option value="Ensayo">2 Ensayo</option>
-                                                            </optgroup>
-                                                            <optgroup label="FORMATO ELECTRÓNICO">
-                                                                <option value="Hipertexto">Hipertexto</option>
-                                                                <option value="eBook">eBook</option>
-                                                            </optgroup>
-                                                            <optgroup label="DOCUMENTALES">
-                                                                <option value="Antología">Antología</option>
-                                                                <option value="Carteles">Carteles</option>
-                                                                <option value="Diario">Diario</option>
-                                                                <option value="Registros anecdoticos">Registros anecdóticos</option>
-                                                                <option value="Trpticos">Trípticos</option>
-                                                                <option value="Instructivos">Instructivos</option>
-                                                                <option value="Recetas">Recetas</option>
-                                                            </optgroup>
-                                                            <optgroup label="ORGANIZADORES GRÁFICOS">
-                                                                <option value="Mapa Cognitivo">Mapa Cognitivo</option>
-                                                                <option value="Mapa conceptual">Mapa conceptual</option>
-                                                                <option value="Mapa mental">Mapa mental</option>
-                                                                <option value="Red Semántica">Red Semántica</option>
-                                                                <option value="Línea de tiempo">Línea de tiempo</option>
-                                                                <option value="Espina de pescado">Espina de pescado</option>
-                                                                <option value="Cuadros sinópticos">Cuadros sinópticos</option>
-                                                                <option value="Diagrama de Flujo">Diagrama de Flujo</option>
-                                                            </optgroup>
-                                                            <optgroup label="DINÁMICAS GRUPALES">
-                                                                <option value="Phillips 666">Phillips 666</option>
-                                                                <option value="Rejillas">Rejillas</option>
-                                                                <option value="Foro">Foro</option>
-                                                                <option value="Mesa redonda">Mesa redonda</option>
-                                                                <option value="Lluvia de ideas">Lluvia de ideas</option>
-                                                                <option value="Rally">Rally</option>
-                                                            </optgroup>
-                                                            <optgroup label="DRAMATIZACIONES">
-                                                                <option value="Sociodrama">Sociodrama</option>
-                                                                <option value="Debate">Debate</option>
-                                                                <option value="Simulación">Simulación</option>
-                                                                <option value="Congreso">Congreso</option>
-                                                                <option value="Museo">Museo</option>
-                                                                <option value="Construcción de una historia">Construcción de una historia</option>
-                                                                <option value="Guión">Guión</option>
-                                                                <option value="Carta">Carta</option>
-                                                                <option value="Sketch">Sketch</option>
-                                                            </optgroup>
-                                                            <optgroup label="PERIODÍSTICAS">
-                                                                <option value="Periódico Mural">Periódico Mural</option>
-                                                                <option value="Diario">Diario</option>
-                                                                <option value="Crónica">Crónica</option>
-                                                                <option value="Reportaje">Reportaje</option>
-                                                                <option value="Entrevista">Entrevista</option>
-                                                                <option value="Historieta">Historieta</option>
-                                                                <option value="Cómic">Cómic</option>
-                                                            </optgroup>
-                                                            <optgroup label="MULTIMEDIA">
-                                                                <option value="Películas">Películas</option>
-                                                                <option value="Reportajes">Reportajes</option>
-                                                                <option value="Audios">Audios</option>
-                                                                <option value="Documentales">Documentales</option>
-                                                                <option value="Programas de radio">Programas de radio</option>
-                                                                <option value="Revista electrónica">Revista electrónica</option>
-                                                                <option value="Cartel electrónico">Cartel electrónico</option>
-                                                            </optgroup>
-                                                            <optgroup label="HABILIDADES">
-                                                                <option value="Solución de problemas">Solución de problemas</option>
-                                                                <option value="Juego de negocios">Juego de negocios</option>
-                                                                <option value="Toma de decisiones">Toma de decisiones</option>
-                                                                <option value="Basado en proyectos">Basado en proyectos</option>
-                                                                <option value="Laboratorio">Laboratorio</option>
-                                                            </optgroup>
-                                                            <optgroup label="DESTREZAS">
-                                                                <option value="Rompecabezas">Rompecabezas</option>
-                                                                <option value="Armado">Armado</option>
-                                                                <option value="Ensamblado">Ensamblado</option>
-                                                                <option value="Secuencias rítmicas">Secuencias rítmicas</option>
-                                                            </optgroup>
-                                                            <optgroup label="ORALES">
-                                                                <option value="Cátedra">Cátedra</option>
-                                                                <option value="Diálogo">Diálogo</option>
-                                                                <option value="Exposición">Exposición</option>
-                                                                <option value="Narración">Narración</option>
-                                                            </optgroup>
-                                                            <optgroup label="LECTURA">
-                                                                <option value="Individual">Individual</option>
-                                                                <option value="Rolada">Rolada</option>
-                                                                <option value="Comentada">Comentada</option>
-                                                                <option value="Fraccionada">Fraccionada</option>
-                                                                <option value="Modificada">Modificada</option>
-                                                                <option value="Coral">Coral</option>
-                                                            </optgroup>
-                                                            <optgroup label="JUEGO DE LETRAS">
-                                                                <option value="Acróstico">Acróstico</option>
-                                                                <option value="Crucigrama">Crucigrama</option>
-                                                                <option value="Mensaje cifrado">Mensaje cifrado</option>
-                                                                <option value="Sopa de letras">Sopa de letras</option>
-                                                                <option value="Telegrama">Telegrama</option>
-                                                                <option value="Ahorcado">Ahorcado</option>
-                                                                <option value="Palabras perdidas">Palabras perdidas</option>
-                                                            </optgroup>
-                                                            <optgroup label="PRODUCTOS">
-                                                                <option value="Proyecto">Proyecto</option>
-                                                                <option value="Estudio de Caso">Estudio de Caso</option>
-                                                                <option value="Practica en laboratorio">Práctica en laboratorio</option>
-                                                                <option value="Practica de campo">Práctica de Campo</option>
-                                                                <option value="Practica simulada">Práctica simulada</option>
-                                                                <option value="Solucion de problemas">Solución de problemas</option>
-                                                            </optgroup>
-                                                        </select>
-                                                        CIERRE: <select class="selectpicker" name="cierre<?php echo $i; ?>[]" data-live-search="true">
-                                                            <option value="Resumen">Resumen</option>
-                                                            <option value="Conclusiones">Conclusiones</option>
-                                                            <option value="Liga con el tema siguiente">Liga con el tema siguiente</option>
-                                                            <option value="Analisis del desempeño">Análisis del desempeño</option>
-                                                            <option value="Dinamica de cierre">Dinámica de cierre</option>
-                                                        </select>
-                                                    </td>
-                                                    <td width="100">
-                                                        <select name="material<?php echo $i; ?>[]" class="selectpicker" data-live-search="true" multiple>
-                                                            <option value="Marcadores">Marcadores</option>
-                                                            <option value="Pintarron">Pintarron</option>
-                                                            <option value="Proyector">Proyector</option>
-                                                            <option value="Computadora">Computadora</option>
-                                                            <option value="Diapositivas">Diapositivas</option>
-                                                            <option value="Videos">Videos</option>
-                                                            <option value="Instrucciones">Instrucciones</option>
-                                                            <option value="Internet">Internet</option>
-                                                            <option value="Bocinas">Bocinas</option>
-                                                            <option value="Cables">Cables</option>
-                                                        </select>
+                                                  $i = 0;
+                                                  while ($row = mysqli_fetch_row($unidad)) {
 
-                                                        <div class="checkbox">
-                                                            <label>Otros<input type="text" class="form-control" name="otros<?php echo $i; ?>" placeholder="Ingresa otro"></label>
-                                                        </div>
+                                                    ?>
+                                                    <tr>
+                                                        <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value=" <?php echo $row[2]; ?> "></td>
+                                                        <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"><?php echo $row[3]; ?></textarea></td>
+                                                        <td><textarea id="3" name="ap_esp<?php echo $i; ?>"><?php echo $row[4]; ?></textarea></td>
+                                                        <td>
+                                                            INICIO: <select class="selectpicker" data-live-search="true" name="inicio<?php echo $i; ?>[]">
+                                                                <optgroup label="INICIO">
+                                                                    <option value="Activacion de conocimientos previos">Activación de conocimientos previos</option>
+                                                                    <option value="Anecdota">Anécdota</option>
+                                                                    <option value="Liga con el tema anterior y/o posterior">Liga con el tema anterior y/o posterior</option>
+                                                                    <option value="Presentacion del Tema">Presentación del Tema</option>
+                                                                </optgroup>
+                                                            </select>
+                                                            DESARROLLO: <select class="selectpicker" data-live-search="true" name="est_ap<?php echo $i; ?>[]">
+                                                                <optgroup label="TABLAS ACADÉMICAS">
+                                                                    <option value="Matriz de inducción">1 Matriz de inducción</option>
+                                                                    <option value="PNI (Positivo, Negativo, Interesante)">1 PNI (Positivo, Negativo, Interesante)</option>
+                                                                    <option value=">QQQ (veo, no veo, infiero)">1 QQQ (veo, no veo, infiero)</option>
+                                                                    <option value="RA-P-RP (resp-preg-resp)">1 RA-P-RP (resp-preg-resp)</option>
+                                                                    <option value="SQA (Qué se, quiero saber, Aprendí)">1 SQA (Qué sé, quiero saber, Aprendí)</option>
+                                                                </optgroup>
+                                                                <optgroup label="TEXTOS ACADÉMICOS">
+                                                                    <option value="Resumen">2 Resumen</option>
+                                                                    <option value="Síntesis">2 Síntesis</option>
+                                                                    <option value="Paráfrasis">2 Paráfrasis</option>
+                                                                    <option value="Reporte">2 Reporte</option>
+                                                                    <option value="Ensayo">2 Ensayo</option>
+                                                                </optgroup>
+                                                                <optgroup label="FORMATO ELECTRÓNICO">
+                                                                    <option value="Hipertexto">Hipertexto</option>
+                                                                    <option value="eBook">eBook</option>
+                                                                </optgroup>
+                                                                <optgroup label="DOCUMENTALES">
+                                                                    <option value="Antología">Antología</option>
+                                                                    <option value="Carteles">Carteles</option>
+                                                                    <option value="Diario">Diario</option>
+                                                                    <option value="Registros anecdoticos">Registros anecdóticos</option>
+                                                                    <option value="Trpticos">Trípticos</option>
+                                                                    <option value="Instructivos">Instructivos</option>
+                                                                    <option value="Recetas">Recetas</option>
+                                                                </optgroup>
+                                                                <optgroup label="ORGANIZADORES GRÁFICOS">
+                                                                    <option value="Mapa Cognitivo">Mapa Cognitivo</option>
+                                                                    <option value="Mapa conceptual">Mapa conceptual</option>
+                                                                    <option value="Mapa mental">Mapa mental</option>
+                                                                    <option value="Red Semántica">Red Semántica</option>
+                                                                    <option value="Línea de tiempo">Línea de tiempo</option>
+                                                                    <option value="Espina de pescado">Espina de pescado</option>
+                                                                    <option value="Cuadros sinópticos">Cuadros sinópticos</option>
+                                                                    <option value="Diagrama de Flujo">Diagrama de Flujo</option>
+                                                                </optgroup>
+                                                                <optgroup label="DINÁMICAS GRUPALES">
+                                                                    <option value="Phillips 666">Phillips 666</option>
+                                                                    <option value="Rejillas">Rejillas</option>
+                                                                    <option value="Foro">Foro</option>
+                                                                    <option value="Mesa redonda">Mesa redonda</option>
+                                                                    <option value="Lluvia de ideas">Lluvia de ideas</option>
+                                                                    <option value="Rally">Rally</option>
+                                                                </optgroup>
+                                                                <optgroup label="DRAMATIZACIONES">
+                                                                    <option value="Sociodrama">Sociodrama</option>
+                                                                    <option value="Debate">Debate</option>
+                                                                    <option value="Simulación">Simulación</option>
+                                                                    <option value="Congreso">Congreso</option>
+                                                                    <option value="Museo">Museo</option>
+                                                                    <option value="Construcción de una historia">Construcción de una historia</option>
+                                                                    <option value="Guión">Guión</option>
+                                                                    <option value="Carta">Carta</option>
+                                                                    <option value="Sketch">Sketch</option>
+                                                                </optgroup>
+                                                                <optgroup label="PERIODÍSTICAS">
+                                                                    <option value="Periódico Mural">Periódico Mural</option>
+                                                                    <option value="Diario">Diario</option>
+                                                                    <option value="Crónica">Crónica</option>
+                                                                    <option value="Reportaje">Reportaje</option>
+                                                                    <option value="Entrevista">Entrevista</option>
+                                                                    <option value="Historieta">Historieta</option>
+                                                                    <option value="Cómic">Cómic</option>
+                                                                </optgroup>
+                                                                <optgroup label="MULTIMEDIA">
+                                                                    <option value="Películas">Películas</option>
+                                                                    <option value="Reportajes">Reportajes</option>
+                                                                    <option value="Audios">Audios</option>
+                                                                    <option value="Documentales">Documentales</option>
+                                                                    <option value="Programas de radio">Programas de radio</option>
+                                                                    <option value="Revista electrónica">Revista electrónica</option>
+                                                                    <option value="Cartel electrónico">Cartel electrónico</option>
+                                                                </optgroup>
+                                                                <optgroup label="HABILIDADES">
+                                                                    <option value="Solución de problemas">Solución de problemas</option>
+                                                                    <option value="Juego de negocios">Juego de negocios</option>
+                                                                    <option value="Toma de decisiones">Toma de decisiones</option>
+                                                                    <option value="Basado en proyectos">Basado en proyectos</option>
+                                                                    <option value="Laboratorio">Laboratorio</option>
+                                                                </optgroup>
+                                                                <optgroup label="DESTREZAS">
+                                                                    <option value="Rompecabezas">Rompecabezas</option>
+                                                                    <option value="Armado">Armado</option>
+                                                                    <option value="Ensamblado">Ensamblado</option>
+                                                                    <option value="Secuencias rítmicas">Secuencias rítmicas</option>
+                                                                </optgroup>
+                                                                <optgroup label="ORALES">
+                                                                    <option value="Cátedra">Cátedra</option>
+                                                                    <option value="Diálogo">Diálogo</option>
+                                                                    <option value="Exposición">Exposición</option>
+                                                                    <option value="Narración">Narración</option>
+                                                                </optgroup>
+                                                                <optgroup label="LECTURA">
+                                                                    <option value="Individual">Individual</option>
+                                                                    <option value="Rolada">Rolada</option>
+                                                                    <option value="Comentada">Comentada</option>
+                                                                    <option value="Fraccionada">Fraccionada</option>
+                                                                    <option value="Modificada">Modificada</option>
+                                                                    <option value="Coral">Coral</option>
+                                                                </optgroup>
+                                                                <optgroup label="JUEGO DE LETRAS">
+                                                                    <option value="Acróstico">Acróstico</option>
+                                                                    <option value="Crucigrama">Crucigrama</option>
+                                                                    <option value="Mensaje cifrado">Mensaje cifrado</option>
+                                                                    <option value="Sopa de letras">Sopa de letras</option>
+                                                                    <option value="Telegrama">Telegrama</option>
+                                                                    <option value="Ahorcado">Ahorcado</option>
+                                                                    <option value="Palabras perdidas">Palabras perdidas</option>
+                                                                </optgroup>
+                                                                <optgroup label="PRODUCTOS">
+                                                                    <option value="Proyecto">Proyecto</option>
+                                                                    <option value="Estudio de Caso">Estudio de Caso</option>
+                                                                    <option value="Practica en laboratorio">Práctica en laboratorio</option>
+                                                                    <option value="Practica de campo">Práctica de Campo</option>
+                                                                    <option value="Practica simulada">Práctica simulada</option>
+                                                                    <option value="Solucion de problemas">Solución de problemas</option>
+                                                                </optgroup>
+                                                            </select>
+                                                            CIERRE: <select class="selectpicker" name="cierre<?php echo $i; ?>[]" data-live-search="true">
+                                                                <option value="Resumen">Resumen</option>
+                                                                <option value="Conclusiones">Conclusiones</option>
+                                                                <option value="Liga con el tema siguiente">Liga con el tema siguiente</option>
+                                                                <option value="Analisis del desempeño">Análisis del desempeño</option>
+                                                                <option value="Dinamica de cierre">Dinámica de cierre</option>
+                                                            </select>
+                                                        </td>
+                                                        <td width="100">
+                                                            <select name="material<?php echo $i; ?>[]" class="selectpicker" data-live-search="true" multiple>
+                                                                <option value="Marcadores">Marcadores</option>
+                                                                <option value="Pintarron">Pintarron</option>
+                                                                <option value="Proyector">Proyector</option>
+                                                                <option value="Computadora">Computadora</option>
+                                                                <option value="Diapositivas">Diapositivas</option>
+                                                                <option value="Videos">Videos</option>
+                                                                <option value="Instrucciones">Instrucciones</option>
+                                                                <option value="Internet">Internet</option>
+                                                                <option value="Bocinas">Bocinas</option>
+                                                                <option value="Cables">Cables</option>
+                                                            </select>
+
+                                                            <div class="checkbox">
+                                                                <label>Otros<input type="text" class="form-control" name="otros<?php echo $i; ?>" placeholder="Ingresa otro"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td><textarea id="evid_ap" name="evid_ap<?php echo $i; ?>"><?php echo $row[7]; ?></textarea></td>
+                                                        <td><select class="selectpicker" data-live-search="true" name="tipo_eval<?php echo $i; ?>">
+                                                            <?php
+                                                            include('conect.php');
+                                                            mysql_query("SET NAMES 'utf8'", $link);
+                                                            $inst = mysqli_query($link,"SELECT * FROM tiposevaluacion");
+                                                            while ($c = mysqli_fetch_row($inst)) {
+                                                            echo "<option value='$c[0]'>$c[1]</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </td>
-                                                    <td><textarea id="evid_ap" name="evid_ap<?php echo $i; ?>"></textarea></td>
-                                                    <td><select class="selectpicker" data-live-search="true" name="tipo_eval<?php echo $i; ?>">
-                                                        <?php
-                                                        include('conect.php');
-                                                        mysql_query("SET NAMES 'utf8'", $link);
-                                                        $inst = mysqli_query($link,"SELECT * FROM tiposevaluacion");
-                                                        while ($c = mysqli_fetch_row($inst)) {
-                                                        echo "<option value='$c[0]'>$c[1]</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="selectpicker" data-live-search="true" name="inst_eval<?php echo $i; ?>">
-                                                        <?php
-                                                        include('conect.php');
-                                                        $tip_eval = mysqli_query($link,"SELECT * FROM instrumentosevaluacion");
-                                                        while ($d = mysqli_fetch_row($tip_eval)) {
-                                                        echo "<option value='$d[0]'>$d[1]</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </td>
-                                                <td><textarea id="9" name="criterio<?php echo $i; ?>"></textarea></td>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tr>
+                                                    <td>
+                                                        <select class="selectpicker" data-live-search="true" name="inst_eval<?php echo $i; ?>">
+                                                            <?php
+                                                            include('conect.php');
+                                                            $tip_eval = mysqli_query($link,"SELECT * FROM instrumentosevaluacion");
+                                                            while ($d = mysqli_fetch_row($tip_eval)) {
+                                                            echo "<option value='$d[0]'>$d[1]</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td><textarea id="9" name="criterio<?php echo $i; ?>"><?php echo $row[10]; ?></textarea></td>
+                                                    <?php
+                                                    $i++;
+                                                    }
+                                                    ?>
+                                                </tr>
+
                                         </table><br><br>
                                     </div>
                                 </div>
@@ -531,7 +534,7 @@ if (isset($submit)) {
                                     <button type="button" class="btn btn-info btn-lg" onclick="$('#sevenStep').hide(); $('#eightStep').show()">SEGUIR</button>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="eightStep" style="display:;">
                                 <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12" id="divAgrRef1">
                                     <h3 class="dark-grey">VIII. REFERENCIAS BÁSICAS:</h3>
@@ -556,7 +559,7 @@ if (isset($submit)) {
                                     <button type="button" class="btn btn-info btn-lg" id="submit8" onclick="$('#eightStep').hide(); $('#nineStep').show()" disabled>SEGUIR</button>
 
                                 </div>
-                          
+
                             </div>
 
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
@@ -637,7 +640,7 @@ if (isset($submit)) {
 
                                 </div>
                             </div>
-                                     
+
                             <script type="text/javascript">
                                             function agrAjax(){
                                                 var isbn = $('#isbnRef').val();
@@ -657,7 +660,7 @@ if (isset($submit)) {
                                                         cache: true,
                                                         success: function(html){
                                                             alert(html);
-                                                        }  
+                                                        }
                                                     });
                                                     $('#agregarRef').modal('hide');
                                                 }
@@ -680,7 +683,7 @@ if (isset($submit)) {
                                                         cache: true,
                                                         success: function(html){
                                                             alert(html);
-                                                        }  
+                                                        }
                                                     });
                                                     $('#agregarRefComp').modal('hide');
                                                 }
@@ -692,6 +695,6 @@ if (isset($submit)) {
                 </div>
                 <!-- /#page-wrapper -->
             </div>
-            
+
         </body>
     </html>

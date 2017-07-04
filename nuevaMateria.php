@@ -28,7 +28,7 @@ if (isset($_POST['clases'])) {
                             <form action="save_pdf.php?c= <?php echo $clases; ?> " method="POST" accept-charset="utf-8">
                                 <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12" id="firstStep">
                                     <h3 class="dark-grey">I. DATOS GENERALES:</h3>
-                                    
+
                                     <div class="form-group col-lg-12 col-md-8">
                                         <label>Nombre Plan Estudios: </label>
                                         <select name="carrera" id="carrera" class="selectCarr selectpicker"  data-live-search="true">
@@ -38,9 +38,9 @@ if (isset($_POST['clases'])) {
                                             $tot_carr = mysqli_query($link, "SELECT c.* FROM carreras c
                                                                             INNER JOIN direccionesxdocente dxc
                                                                             ON c.id_direccion = dxc.id_direccion
-                                                                            INNER JOIN usuarios u 
+                                                                            INNER JOIN usuarios u
                                                                             on u.id_usuario = dxc.id_usuario
-                                                                            WHERE u.id_usuario = $id_usr;");
+                                                                            WHERE u.id_usuario = $id_usr");
                                             if ($tot_carr) {
                                                 while ($id_c = mysqli_fetch_row($tot_carr)) {
                                                     echo "<option value='$id_c[0]'>$id_c[1]</option>";
@@ -51,7 +51,7 @@ if (isset($_POST['clases'])) {
                                     </div>
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Semestre / Cuatrimestre: </label>
-                                        <select name="semestre" id="semestre" class="selectSem" data-live-search="true">
+                                        <select name="semestre" id="semestre" class="selectSem form-control" data-live-search="true">
                                             <option style="display:none" disabled selected value> -- Seleccione Semestre -- </option>
                                         </select>
                                     </div>
@@ -59,14 +59,14 @@ if (isset($_POST['clases'])) {
 
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Nombre Unidad Aprendizaje: </label>
-                                        <select name="unidad" id="unidad" data-live-search="true">
+                                        <select name="unidad" id="unidad" class="form-control" data-live-search="true">
                                             <option style="display:none" disabled selected value> -- Seleccione Materia -- </option>
                                         </select>
                                     </div>
 
                                     <script type="text/javascript">
                                         $(".selectCarr").change(function(){
-                                                        var id_carrera = $(this).val();                 
+                                                        var id_carrera = $(this).val();
                                                         $.ajax({
                                                             type:'POST',
                                                             url:'cargarSemestres.php',
@@ -78,8 +78,8 @@ if (isset($_POST['clases'])) {
                                         });
 
                                         $(".selectSem").change(function(){
-                                                        var id_carrera = $("#carrera").val(); 
-                                                        var semestre = $(this).val();                
+                                                        var id_carrera = $("#carrera").val();
+                                                        var semestre = $(this).val();
                                                         $.ajax({
                                                             type:'POST',
                                                             url:'cargarMaterias.php',
@@ -105,7 +105,7 @@ if (isset($_POST['clases'])) {
                                             <option value="2019 - 2020">2019 - 2020</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="form-group col-lg-4 col-md-8 col-sm-12 col-xs-12">
                                         <label>Fecha: </label>
                                         <input type="date" name="fecha" class="form-control" id="fecha" value="<?php echo date("Y-m-d");?>"><br><br>
@@ -174,7 +174,7 @@ if (isset($_POST['clases'])) {
                                         </script>
                                     </div>
                                 </div> -->
-                                
+
                                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="thirdStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">III. COMPETENCIAS GENÉRICAS Y ESPECÍFICAS DE LA UNIDAD APRENDIZAJE:</h3>
@@ -187,7 +187,7 @@ if (isset($_POST['clases'])) {
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12 text-center">
                                         <button type="button" class="btn btn-info btn-lg" onclick="$('#thirdStep').hide(); $('#secondStep').show()" >ATRAS</button>
                                         <button type="button" class="btn btn-info btn-lg" id="submit3" onclick="$('#thirdStep').hide(); $('#fourthStep').show()" disabled>SEGUIR</button>
-                                        <script>
+                                        <!-- <script>
                                         $("textarea").on("keyup", function(){
                                         if($(this).val() != "" && $("textarea").val() != "" && $("input[name='category3']").is(":checked") == true){
                                         $("button[id='submit3']").removeAttr("disabled");
@@ -198,10 +198,10 @@ if (isset($_POST['clases'])) {
                                         $("button[id='submit3']").removeAttr("disabled");
                                         }
                                         });
-                                        </script>
+                                        </script> -->
                                     </div>
                                 </div>
-                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:;"">
+                                <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="fourthStep" style="display:;">
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <h3 class="dark-grey">IV. FECHAS DE EVALUACIONES SUMATIVAS:</h3>
                                     </div>
@@ -237,7 +237,7 @@ if (isset($_POST['clases'])) {
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Horas Totales de UNIDAD DE APRENDIZAJE:</label><input type="number" placeholder="Horas Totales de UNIDAD DE APRENDIZAJE" name="totalhoras" class="form-control" id="totalhoras" value="" >
                                     </div>
-                                    
+
                                     <div class="form-group col-lg-12 col-md-8 col-sm-12 col-xs-12">
                                         <label>Horas Totales CON DOCENTE:</label>
                                         <input type="number" placeholder="Horas Totales Teóricas" name="docenteteoricas" class="form-control" id="totalhoras" value="" >
@@ -555,7 +555,7 @@ if (isset($_POST['clases'])) {
                                     });
                                     </script> -->
                                 </div>
-                                <!-- 
+                                <!--
                                 <div id="agregarRef" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -585,44 +585,44 @@ if (isset($_POST['clases'])) {
 
                                 <script>
                                  $(document).ready(function(){
-                                     $('#insert_refBas').on("submit", function(event){  
-                                      event.preventDefault();  
-                                      if($('#isbn').val() == "")  
-                                      {  
-                                       alert("ISBN is required");  
-                                      }  
-                                      else if($('#autor').val() == '')  
-                                      {  
-                                       alert("Autor is required");  
-                                      }  
-                                      else if($('#titulo').val() == '')
-                                      {  
-                                       alert("Titulo is required");  
+                                     $('#insert_refBas').on("submit", function(event){
+                                      event.preventDefault();
+                                      if($('#isbn').val() == "")
+                                      {
+                                       alert("ISBN is required");
                                       }
-                                       
-                                      else  
-                                      {  
-                                       $.ajax({  
-                                        url:"insertRef.php",  
-                                        method:"POST",  
-                                        data:$('#insert_refBas').serialize(),  
-                                        beforeSend:function(){  
-                                         $('#submit').val("Inserting");  
-                                        },  
-                                        success:function(data){  
-                                         $('#insert_refBas')[0].reset();  
-                                         $('#agregarRef').modal('hide');  
-                                         $('#ref_bas').html(data);  
-                                        }  
-                                       });  
-                                      }  
+                                      else if($('#autor').val() == '')
+                                      {
+                                       alert("Autor is required");
+                                      }
+                                      else if($('#titulo').val() == '')
+                                      {
+                                       alert("Titulo is required");
+                                      }
+
+                                      else
+                                      {
+                                       $.ajax({
+                                        url:"insertRef.php",
+                                        method:"POST",
+                                        data:$('#insert_refBas').serialize(),
+                                        beforeSend:function(){
+                                         $('#submit').val("Inserting");
+                                        },
+                                        success:function(data){
+                                         $('#insert_refBas')[0].reset();
+                                         $('#agregarRef').modal('hide');
+                                         $('#ref_bas').html(data);
+                                        }
+                                       });
+                                      }
                                      });
                                 </script>
                                 -->
                             </div>
                             <!--
                             <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12" id="nineStep" style="display:;">
-                               
+
                                  <div id="agregarRefComp" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -665,7 +665,7 @@ if (isset($_POST['clases'])) {
                                         $("button[id='submit8']").removeAttr("disabled");
                                         }
                                         });
-                                        </script> 
+                                        </script>
                                     </div>
                                 </div>
                                 -->
@@ -745,7 +745,7 @@ if (isset($_POST['clases'])) {
 
                                 </div>
                             </div>
-                            
+
                             <script type="text/javascript">
                                             function agrAjax(){
                                                 var isbn = $('#isbnRef').val();
@@ -765,7 +765,7 @@ if (isset($_POST['clases'])) {
                                                         cache: true,
                                                         success: function(html){
                                                             alert(html);
-                                                        }  
+                                                        }
                                                     });
                                                     $('#agregarRef').modal('hide');
                                                 }
@@ -788,7 +788,7 @@ if (isset($_POST['clases'])) {
                                                         cache: true,
                                                         success: function(html){
                                                             alert(html);
-                                                        }  
+                                                        }
                                                     });
                                                     $('#agregarRefComp').modal('hide');
                                                 }
