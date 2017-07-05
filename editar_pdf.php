@@ -336,7 +336,8 @@ if (isset($submit)) {
 
                                                     ?>
                                                     <tr>
-                                                        <td><input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value=" <?php echo $row[2]; ?> "></td>
+                                                        <td><input type="hidden" name="id_unidad<?php echo $i; ?>" value=" <?php echo $row[0]; ?> " >
+                                                            <input type="date" class="form-control" name="fechaUnidades<?php echo $i; ?>"  value=" <?php echo $row[2]; ?> "></td>
                                                         <td><textarea id="2" name="temaUnidades<?php echo $i; ?>"><?php echo $row[3]; ?></textarea></td>
                                                         <td><textarea id="3" name="ap_esp<?php echo $i; ?>"><?php echo $row[4]; ?></textarea></td>
                                                         <td>

@@ -21,6 +21,7 @@ $sql = "UPDATE materias SET nombrePlan = '$carr[carrera]', nombreUnidad = '$unid
 mysqli_query($link, $sql);
 
 for ($i=0; $i < $total_clases; $i++) {
+	$id_unidades = $_POST['id_unidad'.$i];
 	$fechaUnidades = $_POST['fechaUnidades'.$i];
 	$temaUnidades = $_POST['temaUnidades'.$i];
 	$ap_esp = $_POST['ap_esp'.$i];
@@ -55,7 +56,7 @@ for ($i=0; $i < $total_clases; $i++) {
 	// actualiza tabla 7 => Falta instruccion 'AND' para diferenciar renglones
 	mysqli_query($link, "UPDATE unidadescompetencia SET fecha = '$fechaUnidades', tema = '$temaUnidades', aprenEsp = '$ap_esp', estApren = '$ini$est$cierre',
 		recursos = '$material', evidencias = '$evid_ap', id_tipoEvaluacion = '$tipo_eval', instrumentosEvaluacion = '$inst_eval',
-				ponderacion = '$criterio' WHERE id_materia = $id AND  id_unidades = ");
+				ponderacion = '$criterio' WHERE id_materia = $id AND id_unidades = $id_unidades");
 }
 
 //referencias
