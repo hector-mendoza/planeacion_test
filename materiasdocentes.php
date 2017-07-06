@@ -27,11 +27,21 @@
                         /*$matId = mysqli_query($link, "SELECT * FROM materias WHERE id_materia = $datos->id_materia") or die("<h2 align='center'>NO HAY RESULTADOS</h2>");*/
                         //$dataMateria = mysqli_fetch_arary($matId);
 
-
-                        $matId = mysqli_query($link, "SELECT * FROM usuarios where usuarios.id_director = $_SESSION[id_usuario] inner join materias  on usuarios.id_director = materias.id_usuario  ") or die("<h2>No hay resultados</h2>");
+                        $prueba = mysqli_query($link, "SELECT * FROM usuarios where id_director = $_SESSION[id_usuario]");
+                        
+                        while ($registro = mysqli_fetch_array($prueba)){  
+                       
+                            
+                                                $matId = mysqli_query($link, "SELECT * FROM materias where materias.id_usuario = $registro[id_usuario] ") or die("<h2>No hay resultados</h2>");
                       
+
+                                             $matId2 = mysqli_query($link, "SELECT * FROM usuarios where usuarios.id_usuario = $registro[id_usuario] ") or die("<h2>No hay resultados</h2>");
+
                         ?>
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+
+
+
                             <table class="table table-hover table-bordered table-responsive">
                                 <thead>
                                     <tr class="info">
@@ -43,10 +53,10 @@
                                 <tbody>
                                    <?php 
                                    if ($matId) {
-                                       while ($row = mysqli_fetch_row($matId)) {
+                                       while ($row = mysqli_fetch_row($matId) and $row2 = mysqli_fetch_row($matId2) ) {
                                     echo "
                                     <tr>
-                                        <td>$row[0]</td>
+                                        <td>$row2[2] $row2[3] </td>
                                         <td>$row[1]</td>
                                         <td><a href='editar_pdf.php?id=".$row[0]."'>EDITAR</a><br><a href='pdf.php?id=".$row[0]."' target='_blank'>VER PDF</a></td>
                                     </tr>
@@ -57,11 +67,11 @@
                                         <h2>No hay resultados</h2>
                                     <?php
                                    }
+                               }
                                     ?>
                                 </tbody>
                             </table>
                         </div>
-
 
 
 
