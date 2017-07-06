@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>$row2[2] $row2[3] </td>
                                         <td>$row[1]</td>
-                                        <td><a href='editar_pdf.php?id=".$row[0]."'>EDITAR</a><br><a href='pdf.php?id=".$row[0]."' target='_blank'>VER PDF</a></td>
+                                        <td><a href='pdf.php?id=".$row[0]."' target='_blank'>VER PDF</a></td>
                                     </tr>
                                     ";
                                     }
