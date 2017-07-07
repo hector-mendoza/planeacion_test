@@ -8,9 +8,9 @@
 
 	if(isset($_POST["id_direccion"])){
 
-		$sql = "UPDATE direcciones SET direccion = $direccion WHERE id_direccion = '$id_direccion'";
+		$sql = "UPDATE direcciones SET direccion = '$direccion' WHERE id_direccion = '$id_direccion'";
 
-		$sqlDxD = "UPDATE direccionesxdocente SET id_usuario = '$id_usuario'";
+		$sqlDxD = "UPDATE direccionesxdocente SET id_usuario = '$id_usuario' WHERE id_direccion = '$id_direccion'";
 
 
 		if (mysqli_query($link, $sql) and mysqli_query($link, $sqlDxD)){

@@ -13,7 +13,7 @@
                     Lista Direcciones
                     </h1>
                     <div class="col-md-12">
-                        <form method="POST" id="insert_usr" action="guardarUsr.php" accept-charset="utf-8">
+                        <form method="POST" id="insert_usr" action="guardarDir.php" accept-charset="utf-8">
                             <?php
                                 include("conect.php") ;
                                 if (isset($_GET)) {
